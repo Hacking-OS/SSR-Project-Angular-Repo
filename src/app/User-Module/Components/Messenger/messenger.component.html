@@ -1,0 +1,81 @@
+
+<app-header></app-header>
+<div class="chat-wrapper">
+
+  <div @slideIn class="chat-sidebar">
+    <h3>Contacts</h3>
+    <ul>
+      <li *ngFor="let user of userGroups" (click)="openChat(user)" class="user-item"
+        [class.active]="selectedUser?.uuid_User === user.uuid_User">
+
+        <div class="user-container">
+          <img [src]="user.profileImage" [alt]="user.userName" class="user-image"
+            onerror="this.src='/assets/noImage.png'" />
+          <span class="status-indicator" [ngClass]="{
+                    'active': user.isActive,
+                    'away': user.isAway,
+                    'offline': !user.isActive && !user.isAway
+                }"></span>
+        </div>
+
+        <span class="user-name">
+          {{ user.userName }}
+        </span>
+      </li>
+    </ul>
+  </div>
+
+
+  <!-- Main Messenger Container -->
+  <div @fadeIn class="messenger-container">
+    <!-- Display each message -->
+    <div *ngFor="let message of messages" class="message-box">
+      <div class="message-header">
+        <span class="user-name">{{ message.userName }}</span>
+        <span *ngIf="message.isAdmin" class="divider">|</span>
+        <span *ngIf="message.isAdmin" class="admin-badge">Admin</span>
+        <span class="divider">|</span>
+        <span class="user-email">{{ message.userEmail }}</span>
+
+      </div>
+      <div class="message-body">
+        <p>{{ message.userMessage }}</p>
+      </div>
+      <div class="message-footer">
+        <span class="message-timestamp">{{ message.messagedAt | date: 'short' }}</span>
+        <span *ngIf="message.userID === userId" class="divider">|</span>
+        <button *ngIf="message.userID === userId" class="delete-btn"
+          (click)="deleteMessage(message.uuid_User)">Delete</button>
+      </div>
+    </div>
+
+    <div *ngIf="isTyping" class="typing-indicator">
+      <span>{{ typingUserName }} is typing</span>
+      <div class="dot-falling-wrapper">
+        <div class="dot-falling"></div>
+      </div>
+    </div>
+
+    <!-- <div *ngIf="isTyping" class="typing-indicator">
+      <span>{{ typingUserName }} is typing</span>
+      <div class="snippet" data-title="dot-falling">
+        <div class="stage">
+          <div class="dot-falling"></div>
+        </div>
+      </div>
+    </div> -->
+      <!-- <span class="dot">.</span>
+      <span class="dot">.</span>
+      <span class="dot">.</span> -->
+  <!-- </div> -->
+</div>
+</div>
+
+<div class="message-input-container">
+  <input class="message-input" [(ngModel)]="userMessageFromIO" (input)="onTyping()"
+    placeholder="Type your message..." />
+  <button class="send-button" (click)="sendMessageFromSocket()"><i class="fas fa-paper-plane"></i></button>
+</div>
+
+
+<app-footer></app-footer>

@@ -1,0 +1,206 @@
+<app-header></app-header>
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar Section -->
+    <aside class="col-md-3 sidebar text-white bg-dark p-3">
+      <h4 class="text-white font-weight-bold">Last Search List</h4>
+      <ul class="list-unstyled">
+        <li *ngFor="let search of lastSearches" class="search-item">{{ search }}</li>
+      </ul>
+
+      <h4 class="text-white mt-4 font-weight-bold">Most Searched Categories</h4>
+      <ul class="list-unstyled">
+        <li *ngFor="let category of mostSearchedCategories" class="category-item">{{ category }}</li>
+      </ul>
+
+      <h4 class="text-white mt-4 font-weight-bold">Special Offers</h4>
+      <ul class="list-unstyled">
+        <li *ngFor="let offer of specialOffers" class="offer-item">{{ offer }}</li>
+      </ul>
+    </aside>
+
+    <!-- Main Content Section -->
+    <div class="col-md-9">
+      <!-- Hero Section -->
+      <div class="hero bg-dark text-white text-center p-5">
+        <h1 class="display-4">Welcome to Our Cart System</h1>
+        <p class="lead">Discover amazing products and great deals!</p>
+        <button class="btn btn-warning btn-lg">Shop Now</button>
+      </div>
+
+      <!-- Carousel for Featured Products -->
+      <h3 class="text-white mt-4">Featured Products</h3>
+      <!-- <p-carousel [value]="featuredProducts" [numVisible]="3" [numScroll]="1" [circular]="true"
+      [autoplayInterval]="3000" class="carousel border-animated mt-4">
+      <ng-template pTemplate="item" let-product>
+        <div class="product-card">
+          <img [src]="product.image" [alt]="product.name" class="product-image" loading="lazy" (error)="onImageError(product)" />
+          <h4 class="text text-white">{{ product.name }}</h4>
+          <p class="text text-white">{{ product.description }}</p>
+          <button class="btn btn-warning">Add to Cart</button>
+        </div>
+      </ng-template>
+    </p-carousel> -->
+    <p-carousel [value]="featuredProducts" [numVisible]="3" [numScroll]="1" [circular]="true"
+    [autoplayInterval]="3000" class="custom-carousel mt-4">
+
+  <ng-template pTemplate="item" let-product>
+    <div class="product-card">
+      <img [src]="product.image" [alt]="product.name" class="product-image" loading="lazy" (error)="onImageError(product)" />
+      <div class="product-details">
+        <h4 class="product-title">{{ product.name }}</h4>
+        <p class="product-description">{{ product.description }}</p>
+        <button class="btn btn-add-to-cart">Add to Cart</button>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- Carousel Navigation Arrows (Optional Customization) -->
+  <!-- <button pTemplate="previcon" class="custom-prev-btn">
+    <i class="pi pi-angle-left"></i>
+  </button>
+  <button pTemplate="nexticon" class="custom-next-btn">
+    <i class="pi pi-angle-right"></i>
+  </button> -->
+</p-carousel>
+
+
+
+      <!-- User Reviews Section -->
+      <!-- <div class="card bg-dark mt-4 animated-border border-animated">
+        <div class="card-title m-2">
+          <h3 class="text text-white">User Reviews</h3>
+        </div>
+
+        <div class="card-body m-2">
+          <div *ngFor="let review of userReviews" class="review-container mb-3">
+            <img [src]="review.image" [alt]="review.user" class="user-image" loading="lazy" (error)="onImageError(review)"/>
+            <div class="review-text text text-white">
+              <div class="review-comment">"{{ review.comment }}"</div>
+              <div class="review-user">{{ review.user }}</div>
+              <div class="star-rating">
+                <ng-container *ngFor="let star of [].constructor(review.rating); let i = index">
+                  <i class="fa fa-star text-warning" aria-hidden="true"></i>
+                </ng-container>
+                <ng-container *ngFor="let star of [].constructor(5 - review.rating); let i = index">
+                  <i class="fa fa-star transparent-star" aria-hidden="true"></i>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- <div class="card bg-dark mt-4 animated-border border-animated">
+        <div class="card-title m-2">
+          <h3 class="text text-white">User Reviews</h3>
+        </div>
+
+        <div class="card-body m-2">
+          <div *ngFor="let review of userReviews" class="review-container mb-3">
+            <img
+              [src]="review.image"
+              [alt]="review.user"
+              class="user-image"
+              loading="lazy"
+              (error)="onImageError(review)"
+            />
+            <div class="review-text text text-white">
+              <div class="review-comment">"{{ review.comment }}"</div>
+              <div class="review-user">{{ review.user }}</div>
+              <div class="star-rating">
+                <ng-container *ngFor="let star of [].constructor(review.rating); let i = index">
+                  <i class="fa fa-star text-warning" aria-hidden="true"></i>
+                </ng-container>
+                <ng-container *ngFor="let star of [].constructor(5 - review.rating); let i = index">
+                  <i class="fa fa-star transparent-star" aria-hidden="true"></i>
+                </ng-container>
+              </div>
+            </div>
+            <hr class="review-divider">
+            <button class="btn btn-reply" (click)="submitReply(review)">Reply</button>
+
+            <div class="replies-container">
+              <div *ngFor="let reply of review.replies" class="reply-container text text-white">
+                <div class="reply-user">Replied by: {{ reply.user }}</div>
+                <div class="reply-comment">"{{ reply.comment }}"</div>
+              </div>
+            </div>
+
+            <div class="reply-input">
+              <input
+                type="text"
+                [(ngModel)]="replyText[review.user]"
+                placeholder="Add a reply..."
+                class="form-control"
+              />
+              <button class="btn btn-submit" (click)="submitReply(review)">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <div class="card bg-dark mt-4 animated-border border-animated">
+        <div class="card-title m-2">
+          <h3 class="text text-white">User Reviews</h3>
+        </div>
+
+        <div class="card-body m-2">
+          <ul class="review-list">
+            <li *ngFor="let review of userReviews" class="review-item mb-3">
+              <div class="review-container">
+                <img
+                  [src]="review.image"
+                  [alt]="review.user"
+                  class="user-image"
+                  loading="lazy"
+                  (error)="onImageError(review)"
+                />
+                <div class="review-text text text-white">
+                  <div class="review-comment">"{{ review.comment }}"</div>
+                  <div class="review-user">{{ review.user }}</div>
+                  <div class="star-rating">
+                    <ng-container *ngFor="let star of [].constructor(review.rating); let i = index">
+                      <i class="fa fa-star text-warning" aria-hidden="true"></i>
+                    </ng-container>
+                    <ng-container *ngFor="let star of [].constructor(5 - review.rating); let i = index">
+                      <i class="fa fa-star transparent-star" aria-hidden="true"></i>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+
+              <hr class="review-divider"> <!-- Divider line between reviews -->
+              <div class="reply-section">
+                <button *ngIf="!isReplyingTo[review.user]" class="btn btn-reply" (click)="toggleReplyInput(review)">Reply</button>
+
+                <div class="replies-container">
+                  <div *ngFor="let reply of review.replies" class="reply-container text text-white">
+                    <div class="reply-user"> {{ reply.user }}</div>
+                    <div class="reply-comment">"{{ reply.comment }}"</div>
+                  </div>
+                </div>
+
+                <div *ngIf="isReplyingTo[review.user]" class="reply-input">
+                  <input
+                    type="text"
+                    [(ngModel)]="replyText[review.user]"
+                    placeholder="Add a reply..."
+                    class="form-control"
+                  />
+                  <button class="btn btn-submit" (click)="submitReply(review)">Submit</button>
+                </div>
+
+
+              </div>
+
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<app-footer></app-footer>

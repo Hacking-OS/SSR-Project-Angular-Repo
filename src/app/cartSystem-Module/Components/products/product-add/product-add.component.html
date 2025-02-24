@@ -1,0 +1,98 @@
+<br><br><br>
+<div class="container-fluid">
+
+  <form *ngIf="userRole!=='user'" #myForm='ngForm' (ngSubmit)="myForm.form.valid?postData(myForm):'';">
+
+    <div class="container">
+      <div class="row">
+
+        <div class="col-5">
+          ProductName: <input class="form-control" type="text" #name="ngModel" name="name" [(ngModel)]="userData.name"
+            placeholder="Enter Product Name: " required minlength="4">
+          <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="alert alert-danger" role="alert">
+            <div *ngIf="name?.errors?.['required']">Name is required. </div>
+            <div *ngIf="name?.errors?.['minlength']">Name must be greater than < 3. </div>
+            </div>
+          </div>
+
+
+          <div class="col-5">
+            ProductCategory:
+            <br>
+            <!-- <input class="form-control" type="number" #catID="ngModel" name="catID" [(ngModel)]="userData.catID"
+    placeholder="Enter CatID:" required minlength="4"> -->
+    <!-- {{ catDropdown |json }} -->
+            <select (change)="loadSubCat(userData.catID)" class="form-control" name="catID" #catID="ngModel" [(ngModel)]="userData.catID">
+              <option *ngFor="let cat of catDropdown" [value]="cat?.id">
+                {{ cat?.name }}
+              </option>
+            </select>
+            <div *ngIf="catID?.invalid && (catID?.dirty || catID?.touched)" class="alert alert-danger" role="alert">
+              <div *ngIf="catID?.errors?.['required']">cat id is required. </div>
+              <div *ngIf="catID?.errors?.['minlength']">cat id must be greater than < 3. </div>
+              </div>
+            </div>
+
+          <div class="col-5">
+            ProductSubCategory:
+            <br>
+            <!-- {{ subCatDropdown |json }} -->
+            <!-- <input class="form-control" type="number" #catID="ngModel" name="catID" [(ngModel)]="userData.catID"
+    placeholder="Enter CatID:" required minlength="4"> -->
+            <select class="form-control" name="subCatID" #subCatID="ngModel" [(ngModel)]="userData.subCatID">
+              <option *ngFor="let cat of subCatDropdown" [value]="cat?.id">
+                {{ cat?.subCategoryName }}
+              </option>
+            </select>
+            <div *ngIf="subCatID?.invalid && (subCatID?.dirty || subCatID?.touched)" class="alert alert-danger" role="alert">
+              <div *ngIf="subCatID?.errors?.['required']">cat id is required. </div>
+              <div *ngIf="subCatID?.errors?.['minlength']">cat id must be greater than < 3. </div>
+              </div>
+            </div>
+
+
+            <div class="col-5">
+              ProductDescription:<input class="form-control" type="text" #description="ngModel" name="description"
+                [(ngModel)]="userData.description" placeholder="Enter Description:" required minlength="4">
+              <div *ngIf="description?.invalid && (description?.dirty || description?.touched)"
+                class="alert alert-danger" role="alert">
+                <div *ngIf="description?.errors?.['required']">description is required. </div>
+                <div *ngIf="description?.errors?.['minlength']">description must be greater than < 3. </div>
+                </div>
+              </div>
+
+              <div class="col-5">
+                ProductPrice:<input class="form-control" type="number" #price="ngModel" name="price"
+                  [(ngModel)]="userData.price" placeholder="Enter price:" required minlength="4">
+                <div *ngIf="price?.invalid && (price?.dirty || price?.touched)" class="alert alert-danger" role="alert">
+                  <div *ngIf="price?.errors?.['required']">price is required. </div>
+                  <div *ngIf="price?.errors?.['minlength']">price must be greater than < 3. </div>
+                  </div>
+                </div>
+                <div class="col-5 mt-2">
+                  <!-- Image : <input type="file" name="productImage" (change)="onFileSelected($event)" required> -->
+                  <app-file-uploader (uploadParamsEmit)="onFileSelected($event)"></app-file-uploader>
+                </div>
+
+                <div class="col-5">
+                  Total Inventory Count :<input class="form-control" type="number" #inventoryCount="ngModel" name="inventoryCount"
+                    [(ngModel)]="userData.inventoryCount" placeholder="Enter Total Inventory:" required minlength="4">
+                  <div *ngIf="inventoryCount?.invalid && (inventoryCount?.dirty || inventoryCount?.touched)" class="alert alert-danger" role="alert">
+                    <div *ngIf="inventoryCount?.errors?.['required']">inventory is required. </div>
+                    <div *ngIf="inventoryCount?.errors?.['minlength']">inventory must be greater than < 3. </div>
+                    </div>
+                  </div>
+
+                <div class="col-12 mt-3">
+                  <!-- [disabled]="myForm.invalid"(click)="formControl()"  -->
+                  <button class="btn btn-primary me-3" type="submit" name="submit"
+                    style="border-radius:5px;" [disabled]="myForm.form.invalid" >Submit</button>
+                  <button class="btn btn-danger" type="button" name="button"
+                    style="border-radius:5px;" (click)="back()">Back</button>
+                </div>
+              </div>
+            </div>
+  </form>
+</div>
+<!-- <app-footer></app-footer> -->
+<!-- <div [hidden]="!isUserSeeGrid" class="container">style="width: 18rem;"style="width: 286px;"  -->

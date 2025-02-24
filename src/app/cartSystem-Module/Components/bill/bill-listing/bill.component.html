@@ -1,0 +1,105 @@
+<app-header></app-header>
+<ng-template #elseBlock>
+  <div id="center"><i>Sorry! No purchase found. Check out to see your Bill</i></div>
+</ng-template>
+
+<div *ngIf="show?.length !== 0; else elseBlock">
+  <div class="container-fluid mt-4">
+    <div class="table-responsive">
+      <table mat-table [dataSource]="show" class="mat-elevation-z8 bg-dark">
+
+        <!-- UUID Column -->
+        <ng-container matColumnDef="uuid">
+          <th mat-header-cell *matHeaderCellDef class="text-white"> UUID </th>
+          <td mat-cell *matCellDef="let bill" class="text-white">
+            <span [ngClass]="{'text-primary': bill.paymentMethod === 'CardPayment'}">{{ bill.uuid }}</span>
+          </td>
+        </ng-container>
+
+        <!-- Payment Method Column -->
+        <ng-container matColumnDef="paymentMethod">
+          <th mat-header-cell *matHeaderCellDef class="text-white"> PAYMENT-METHOD </th>
+          <td mat-cell *matCellDef="let bill">
+            <span  [class]="getClassForPaymentType(bill.paymentMethod)">{{ bill.paymentMethod }}</span>
+          </td>
+        </ng-container>
+
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef class="text-white"> EMAIL </th>
+          <td mat-cell *matCellDef="let bill" class="text-white">{{ bill.email }}</td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef class="text-white"> NAME </th>
+          <td mat-cell *matCellDef="let bill" class="text-white">{{ bill.name }}</td>
+        </ng-container>
+
+        <!-- Total Amount Column -->
+        <ng-container matColumnDef="total">
+          <th mat-header-cell *matHeaderCellDef class="text-white"> TOTAL-AMOUNT </th>
+          <td mat-cell *matCellDef="let bill" class="text-white">{{ bill.total }}</td>
+        </ng-container>
+
+        <!-- Phone Column -->
+        <ng-container matColumnDef="phone">
+          <th mat-header-cell *matHeaderCellDef class="text-white"> PHONE </th>
+          <td mat-cell *matCellDef="let bill" class="text-white">{{ bill.phone }}</td>
+        </ng-container>
+
+        <!-- Actions Column for Admin -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef class="text-white">
+            <ng-container *ngIf="userRole === 'admin'" class="text-white"> Actions </ng-container>
+          </th>
+          <td mat-cell *matCellDef="let bill">
+            <ng-container *ngIf="userRole === 'admin'">
+              <button mat-icon-button color="primary" (click)="getPdf(bill.uuid)" title="view" class="btn-hover-animation">
+                <mat-icon>description</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="deleteBill(bill.uuid)" title="delete" class="btn-hover-animation">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </ng-container>
+          </td>
+        </ng-container>
+
+        <!-- <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef class="text-white">
+            <ng-container *ngIf="userRole === 'admin'" class="text-white"> Actions </ng-container>
+          </th>
+          <td mat-cell *matCellDef="let bill">
+            <ng-container *ngIf="userRole === 'admin'">
+              <button mat-icon-button color="primary" (click)="getPdf(bill.uuid)" title="view">
+                <mat-icon>description</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="deleteBill(bill.uuid)" title="delete">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </ng-container>
+          </td>
+        </ng-container> -->
+
+        <!-- Details Column for Non-Admin -->
+        <ng-container matColumnDef="details">
+          <th mat-header-cell *matHeaderCellDef>
+            <ng-container *ngIf="userRole !== 'admin'"> Details </ng-container>
+          </th>
+          <td mat-cell *matCellDef="let bill">
+            <ng-container *ngIf="userRole !== 'admin'">
+              <button mat-icon-button color="primary" (click)="getPdf(bill.uuid)" title="view" class="btn-hover-animation">
+                <mat-icon>description</mat-icon>
+              </button>
+            </ng-container>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      </table>
+    </div>
+  </div>
+</div>
+

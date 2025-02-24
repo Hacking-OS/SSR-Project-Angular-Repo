@@ -1,0 +1,241 @@
+ table th {
+  border: none;
+}
+.custom-rounded-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: 0.5rem; /* Adjust the value for desired roundness */
+}
+
+.custom-rounded-table thead tr:first-child th:first-child {
+  border-top-left-radius: 1rem; /* Top-left corner */
+}
+
+.custom-rounded-table thead tr:first-child th:last-child {
+  border-top-right-radius: 1rem; /* Top-right corner */
+}
+
+.custom-rounded-table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 1rem; /* Bottom-left corner */
+}
+
+.custom-rounded-table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 1rem; /* Bottom-right corner */
+}
+
+    /* .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+
+    .slider.round {
+      border-radius: 34px;
+    }
+
+    .slider.round:before {
+      border-radius: 50%;
+    }
+
+    tr:hover {background-color: rgba(0,0,0,.075);} */
+
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 27px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 0px;
+      bottom: 1px;
+      background-color: white;
+      transition: .4s;
+    }
+
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 34px;
+    }
+
+    .slider.round:before {
+      border-radius: 50%;
+    }
+
+    /* Disabled state */
+    .switch.disabled .slider {
+      background-color: #aaa; /* Change background color for disabled */
+    }
+
+    .switch.disabled input:checked + .slider:before {
+      background-color: #666; /* Change color for checked state in disabled */
+    }
+
+    .switch.disabled input:checked + .slider {
+      background-color: #888; /* Change background color for checked state in disabled */
+    }
+
+    .switch.disabled input:checked + .slider:before {
+      background-color: #555; /* Change color for checked state in disabled */
+    }
+
+    .switch.disabled input:focus + .slider {
+      box-shadow: none; /* Remove box shadow for focus state in disabled */
+    }
+
+    .switch.disabled input:checked + .slider:before {
+      transform: none; /* Remove transform for checked state in disabled */
+    }
+
+    tr:hover {background-color: rgba(0,0,0,.075);}
+
+/* Ensure that the dashboard container and its children take up full height */
+.dashboard-container {
+  height: 100vh; /* Full height of the viewport */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  background-color: #29e4cb;
+  color: #ecf0f1;
+  padding: 0;
+  font-size: 16px;
+  height: 100%;
+}
+
+/* Navbar item styles */
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Active tab styling */
+.nav-item.active {
+  background-color: #2980b9;  /* Blue color for active item */
+  color: #fff;
+}
+
+/* Hover effect */
+.nav-item:hover {
+  background-color: #218fd8;  /* Darker gray for hover effect */
+}
+
+/* Icon styling */
+.nav-icon {
+  margin-right: 15px;
+  font-size: 20px;
+}
+
+/* Content area */
+.mat-sidenav-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.content {
+  padding: 20px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* Content Toolbar */
+.content-toolbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  font-size: 20px;
+  background-color: #34495e;
+  color: white;
+}
+
+.rounded-table {
+  border-radius: 10px !important;
+}

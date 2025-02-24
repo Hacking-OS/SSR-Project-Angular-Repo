@@ -1,0 +1,89 @@
+/* .progress {
+  width: 100%;
+  height: 30px;
+  background-color: #222;
+  border-radius: 50px; 
+  overflow: hidden;
+  box-shadow: 0px 0px 10px rgba(0, 255, 150, 0.3);
+  position: relative;
+}
+
+.progress-bar {
+  height: 100%;
+  line-height: 30px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  background-size: 300% 300%;
+  border-radius: 50px; 
+  transition: width 1.2s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.8s ease-in-out;
+  will-change: background-position;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.progress-bar.low {
+  background: linear-gradient(270deg, #ff4d4d, #ff7300);
+  animation: gradientShift 3s infinite ease-in-out;
+}
+
+.progress-bar.medium {
+  background: linear-gradient(270deg, #ffd700, #ffeb3b);
+  animation: gradientShift 3s infinite ease-in-out;
+}
+
+.progress-bar.high {
+  background: linear-gradient(270deg, #00ff99, #4caf50);
+  animation: gradientShift 3s infinite ease-in-out;
+} */
+
+.status-container {
+  background-color: rgba(0, 0, 0, 0.8); /* Dark background */
+  padding: 10px 15px;
+  border-radius: 8px;
+  display: inline-block;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0px 0px 10px rgba(0, 255, 150, 0.5);
+  text-align: center;
+  margin-left:150px;
+}
+
+/* Styling for the Status Text */
+.status-text {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between elements */
+}
+
+/* Code-like styling */
+.status-code {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 3px 6px;
+  border-radius: 5px;
+  font-family: monospace;
+  color: #ffd700; /* Golden */
+}
+
+/* Progress Percentage Styling */
+.progress-percentage {
+  background-color: #00ff99;
+  padding: 3px 6px;
+  border-radius: 5px;
+  color: black;
+  font-weight: bold;
+}
+.progress-custom {
+  height: 27px;
+  border-radius: 50px; /* Smooth round corners */
+  box-shadow: 0px 0px 30px 10px rgba(40, 167, 69, 0.85);
+  overflow: hidden; /* Keeps rounded edges clean */
+}
+
+

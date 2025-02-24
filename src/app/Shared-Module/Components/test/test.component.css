@@ -1,0 +1,51 @@
+/* Hide modal initially */
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.9);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out, visibility 0.3s;
+}
+
+/* Smooth fade-in effect when modal is opened */
+.fade-in {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Smooth popup scaling effect */
+.scale-100 {
+  transform: scale(1);
+}
+
+  
+  .loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+
+  /* Ensure video scales inside the modal body */
+.video-responsive {
+  width: 100%;
+  height: auto;
+  max-height: 70vh; /* Adjusts to modal height */
+  border-radius: 8px;
+}
+
+/* Adjust modal to fit content properly */
+.modal-body {
+  padding: 0;
+}

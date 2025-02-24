@@ -1,0 +1,228 @@
+<!-- <p>signup works!</p>
+<app-header></app-header>
+<div class="form-wrapper" style="background: linear-gradient(90deg, #4A148C, #6A1B9A, #8E24AA, #AB47BC); padding: 50px;">
+  <div class="container bg-dark p-5 rounded shadow-lg text-light" style="border: 2px solid; border-image: linear-gradient(90deg, #4A148C, #6A1B9A, #8E24AA, #AB47BC) 1;">
+    <form #myForm="ngForm" (ngSubmit)="postData(myForm)">
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <label for="firstName" class="form-label text-light">First Name</label>
+          <input class="form-control bg-dark text-light" style="border: 2px solid; border-image: linear-gradient(90deg, #4A148C, #6A1B9A, #8E24AA, #AB47BC) 1;"
+                 type="text" #first="ngModel" id="firstName" name="name"
+                 [(ngModel)]="userData.firstName" placeholder="Enter First Name" required minlength="4"
+                 (ngModelChange)="updateName()">
+          <div *ngIf="first?.invalid && (first?.dirty || first?.touched)" class="text-danger mt-1">
+            <div *ngIf="first?.errors?.['required']">First name is required.</div>
+            <div *ngIf="first?.errors?.['minlength']">First name must be at least 4 characters.</div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="lastName" class="form-label text-light">Last Name</label>
+          <input class="form-control bg-dark text-light" style="border: 2px solid; border-image: linear-gradient(90deg, #4A148C, #6A1B9A, #8E24AA, #AB47BC) 1;"
+                 type="text" #last="ngModel" id="lastName" name="last"
+                 [(ngModel)]="userData.lastName" placeholder="Enter Last Name" required minlength="4"
+                 (ngModelChange)="updateName()">
+          <div *ngIf="last?.invalid && (last?.dirty || last?.touched)" class="text-danger mt-1">
+            <div *ngIf="last?.errors?.['required']">Last name is required.</div>
+            <div *ngIf="last?.errors?.['minlength']">Last name must be at least 4 characters.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <label for="email" class="form-label text-light">Email</label>
+          <input class="form-control bg-dark text-light" style="border: 2px solid; border-image: linear-gradient(90deg, #4A148C, #6A1B9A, #8E24AA, #AB47BC) 1;"
+                 type="email" #email="ngModel" id="email" name="email"
+                 [(ngModel)]="userData.email" placeholder="Enter Email" required>
+          <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-danger mt-1">
+            <div *ngIf="email?.errors?.['required']">Email is required.</div>
+            <div *ngIf="email?.errors?.['minlength']">Email must be greater than 3 characters.</div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="password" class="form-label text-light">Password</label>
+          <input class="form-control bg-dark text-light" style="border: 2px solid; border-image: linear-gradient(90deg, #4A148C, #6A1B9A, #8E24AA, #AB47BC) 1;"
+                 type="password" #password="ngModel" id="password" name="password"
+                 [(ngModel)]="userData.password" placeholder="Enter Password" required minlength="4">
+          <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="text-danger mt-1">
+            <div *ngIf="password?.errors?.['required']">Password is required.</div>
+            <div *ngIf="password?.errors?.['minlength']">Password must be greater than 3 characters.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <label for="gender" class="form-label text-light">Gender</label>
+          <ng-select [clearable]="false" #gender="ngModel" id="gender" name="gender" [(ngModel)]="userData.gender"
+                     [items]="genderList" bindLabel="genderLabel" bindValue="GenderVal" placeholder="Enter Gender">
+          </ng-select>
+        </div>
+        <div class="col-md-6">
+          <label for="dob" class="form-label text-light">Date of Birth</label>
+          <input class="form-control bg-dark text-light" style="border: 2px solid; border-image: linear-gradient(90deg, #4A148C, #6A1B9A, #8E24AA, #AB47BC) 1;"
+                 type="date" #dob="ngModel" id="dob" name="dob" [(ngModel)]="userData.dob">
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <label for="phone" class="form-label text-light">Phone</label>
+          <input class="form-control bg-dark text-light" style="border: 2px solid; border-image: linear-gradient(90deg, #4A148C, #6A1B9A, #8E24AA, #AB47BC) 1;"
+                 type="text" #phone="ngModel" id="phone" name="phone"
+                 [(ngModel)]="userData.phone" placeholder="Enter Phone Number" required>
+        </div>
+        <div class="col-md-6">
+          <label for="address" class="form-label text-light">Address</label>
+          <input class="form-control bg-dark text-light" style="border: 2px solid; border-image: linear-gradient(90deg, #4A148C, #6A1B9A, #8E24AA, #AB47BC) 1;"
+                 type="text" #address="ngModel" id="address" name="address"
+                 [(ngModel)]="userData.address" placeholder="Enter Address" required>
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-md-12 text-center">
+          <button type="submit" class="btn btn-outline-light px-5 py-2" [disabled]="myForm.invalid">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<app-footer></app-footer> -->
+
+<app-header></app-header>
+
+<div class="container-fluid bg-dark text-light">
+  <form #myForm="ngForm" (ngSubmit)="postData(myForm)" class="m-5 form-container">
+    <div class="m-5">
+      <div class="row">
+        <div class="col-md-6">
+          <input class="form-control" type="text" #first="ngModel" name="name" [(ngModel)]="userData.firstName"
+            placeholder="Enter FirstName: " required minlength="4" (ngModelChange)="updateName()">
+          <div *ngIf="first?.invalid && (first?.dirty || first?.touched)" class="alert alert-danger w-50" role="alert">
+            <div *ngIf="first?.errors?.['required']">First name is required. </div>
+            <div *ngIf="first?.errors?.['minlength']">First name must be greater than 3 characters.</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <input class="form-control" type="text" #last="ngModel" name="last" [(ngModel)]="userData.lastName"
+            placeholder="Enter LastName: " required minlength="4" (ngModelChange)="updateName()">
+          <div *ngIf="last?.invalid && (last?.dirty || last?.touched)" class="alert alert-danger w-50" role="alert">
+            <div *ngIf="last?.errors?.['required']">Last name is required. </div>
+            <div *ngIf="last?.errors?.['minlength']">Last name must be greater than 3 characters.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <span class="form-control">{{ FullName }}</span>
+        </div>
+        <div class="col-md-6">
+          <input class="form-control" type="email" #email="ngModel" name="email" [(ngModel)]="userData.email"
+            placeholder="Enter Email: " required minlength="4">
+          <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="alert alert-danger w-50" role="alert">
+            <div *ngIf="email?.errors?.['required']">Email is required. </div>
+            <div *ngIf="email?.errors?.['minlength']">Email must be greater than 3 characters.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <input class="form-control" type="password" #password="ngModel" name="password"
+            [(ngModel)]="userData.password" placeholder="Enter Password: " required minlength="4">
+          <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="alert alert-danger w-50"
+            role="alert">
+            <div *ngIf="password?.errors?.['required']">Password is required. </div>
+            <div *ngIf="password?.errors?.['minlength']">Password must be greater than 3 characters.</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <input class="form-control" type="number" #phone="ngModel" name="phone" [(ngModel)]="userData.phone"
+            placeholder="Enter Phone Number: " required minlength="4">
+          <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)" class="alert alert-danger w-50" role="alert">
+            <div *ngIf="phone?.errors?.['required']">Phone number is required. </div>
+            <div *ngIf="phone?.errors?.['minlength']">Phone number must be greater than 3 digits.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Choose an option</mat-label>
+            <mat-select name="country" [(ngModel)]="userData.country"
+              (selectionChange)="getStateList(userData.country)">
+              <mat-option *ngFor="let option of countryList" [value]="option.id">
+                {{ option.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Choose an option</mat-label>
+            <mat-select name="state" [(ngModel)]="userData.state">
+              <mat-option *ngFor="let option of stateList" [value]="option.country_id">
+                {{ option.state_name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Choose an option</mat-label>
+            <mat-select name="gender" [(ngModel)]="userData.gender">
+              <mat-option *ngFor="let option of genderList" [value]="option.GenderVal">
+                {{ option.genderLabel }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6">
+          <input class="form-control" type="text" #city="ngModel" name="city" [(ngModel)]="userData.city"
+            placeholder="Enter City: ">
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <input class="form-control" type="date" #dob="ngModel" name="dob" [(ngModel)]="userData.dob">
+        </div>
+        <div class="col-md-6">
+          <app-file-uploader (uploadParamsEmit)="onFileSelected($event)"></app-file-uploader>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <input class="form-control" type="text" #address2="ngModel" name="address2" [(ngModel)]="userData.address2"
+            placeholder="Enter Address2: ">
+        </div>
+        <div class="col-md-6">
+          <input class="form-control" type="text" #address="ngModel" name="address" [(ngModel)]="userData.address"
+            placeholder="Enter Address: ">
+        </div>
+      </div>
+
+      <br><br>
+
+      <button type="submit" name="submit" [disabled]="myForm.invalid" class="btn btn-outline-primary mr-2">
+        Submit
+      </button>
+      <button type="button" class="btn btn-outline-warning" (click)="redirectUser('user/login')">
+        Login
+      </button>
+    </div>
+  </form>
+</div>
+<app-footer></app-footer>

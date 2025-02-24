@@ -1,0 +1,20 @@
+<!-- <div class="progress">
+  <div class="progress-bar" role="progressbar" [ngClass]="{ 'low-progress': progress < 10 }" [style.width.%]="progress"
+    [attr.aria-valuenow]="progress" aria-valuemin="0" aria-valuemax="100">
+    <span class="progress-text">{{ progress }}%</span>
+  </div>
+</div> -->
+
+
+
+<div *ngIf="progress && currentStatus" class="status-container mb-5">
+  <span class="status-text">
+    <b>Status:</b> <code class="status-code">{{ currentStatus }}</code>
+    <span class="progress-percentage">{{ progress }}%</span>
+  </span>
+</div>
+
+<div class="progress progress-custom" role="progressbar" aria-label="Animated striped example" [attr.aria-valuenow]="progress"
+  aria-valuemin="0" aria-valuemax="100">
+  <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" [style.width.%]="progress">{{ progress }}%</div>
+</div>

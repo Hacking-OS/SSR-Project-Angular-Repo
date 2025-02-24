@@ -1,0 +1,55 @@
+<div class="table-responsive">
+  <table *ngIf="AdminviewRights" class="table table-hover table-dark rounded custom-rounded-table">
+    <thead class="p-3">
+      <tr>
+        <th scope="col">Image</th>
+        <th scope="col">ID</th>
+        <th scope="col">USER</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">User-Active</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody class="p-3">
+      <tr>
+        <td colspan="8" class="table-group-divider"></td>
+      </tr>
+      <tr *ngFor="let person of AdminviewRights;">
+        <td>
+          <img id="image-preview_{{person.id}}" [src]="baseUrl + '/images/profileImages/' + person.image"
+            class="rounded-circle" height="45px" width="45px" alt="Profile image for {{person.name}}"
+            onerror="onerror=null; src='/assets/noImage.png';">
+        </td>
+        <td><span [innerHTML]="person.id"></span></td>
+        <td><span [innerHTML]="person.name"></span></td>
+        <td><span [innerHTML]="person.email"></span></td>
+        <td><span [innerHTML]="person.phone"></span></td>
+        <td>
+          <label class="switch" [ngClass]="{'disabled': person.role === 'admin'}">
+            <input type="checkbox" (click)="changeInput(person.id, person.status, person.role)"
+              [checked]="person.status" [disabled]="person.role === 'admin'">
+            <span class="slider round"></span>
+          </label>
+        </td>
+        <td>
+          <span [ngClass]="getMessageClass(person.status, person.role)">
+            {{ person.status == 1 ? 'Active' : 'Not-Active' }}
+          </span>
+        </td>
+        <td>
+          <button class="btn" [ngClass]="{'btn-primary': person.status == 1, 'btn-danger': person.status == 0}"
+            (click)="routeTo({userID: person.id, userStatus: person.status, isActive: person.status == 1})"
+            [attr.aria-label]="person.status == 1 ? 'View details for ' + person.name : 'Update details for ' + person.name">
+            {{ person.status == 1 ? "View" : "Update" }}
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h3><i class="fa fa-usd" aria-hidden="true"></i> Bill Created : ({{ billDetails?.bill }})</h3>
+<h3><i class="fa fa-shopping-bag" aria-hidden="true"></i> Product count: ({{ billDetails?.product }})</h3>
+<h3><i class="fa fa-list-alt" aria-hidden="true"></i> Category Count :({{ billDetails?.category }})</h3>

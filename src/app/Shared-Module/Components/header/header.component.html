@@ -1,0 +1,106 @@
+<!-- <p>header works!</p> -->
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> -->
+<!-- <a class="navbar-brand" (click)="redirectUser('')">Navbar</a> -->
+<!-- <ng-toast></ng-toast> -->
+
+
+<app-notification></app-notification>
+<div *ngIf="isUser">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-shadesOfPurple">
+    <!-- d-flex justify-content-between w-100 -->
+    <div [ngClass]="{'d-flex justify-content-between w-100 mx-4': isMobileView}">
+    <a class="navbar-brand mx-auto" (click)="redirectUser('')"><img  [ngClass]="{'mx-4': isMobileView}"  class="rounded-circle" src="assets/cart_system_icon_purple_theme.ico"></a>
+    <!-- <a class="navbar-brand mx-auto" (click)="redirectUser('')"><img src="../favicon.ico"></a> -->
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button> -->
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+  </div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto mx-auto text-center">
+        <li class="nav-item active">
+          <a class="nav-link" (click)="redirectUser('')">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li *ngIf="userRole!==null" class="nav-item">
+          <a class="nav-link" (click)="redirectUser('cartSystem/product')">product</a>
+        </li>
+
+        <li *ngIf="userRole!==null && userRole==='user'" class="nav-item">
+          <a class="nav-link" (click)="redirectUser('cartSystem/cart')">cart
+            <sup>
+              <span class="badge" *ngIf="responseCountCart!==null">
+                {{responseCountCart}}
+              </span>
+              <span class="non" *ngIf="responseCountCart===null">0</span>
+
+            </sup>
+          </a>
+        </li>
+
+        <li *ngIf="userRole!==null" class="nav-item">
+          <a class="nav-link" (click)="redirectUser('cartSystem/bill')">Bill
+            <sup>
+              <span class="badge" *ngIf="responseCountBill > 0">
+                {{ responseCountBill }}
+              </span>
+              <span class="non" *ngIf="responseCountBill == 0">0</span>
+            </sup>
+          </a>
+        </li>
+
+
+        <li *ngIf="userRole!==null && userRole!=='admin'" class="nav-item">
+          <a class="nav-link" (click)="redirectUser('cartSystem/checkout')">checkout
+            <sup>
+              <span class="badge" *ngIf="responseCountCheckout!==null">
+                {{responseCountCheckout}}
+              </span>
+              <span class="non" *ngIf="responseCountCheckout===null">0</span>
+            </sup>
+          </a>
+        </li>
+
+        <li *ngIf="userRole!==null && userRole==='admin'" class="nav-item">
+          <a class="nav-link" (click)="redirectUser('cartSystem/category')">Category</a>
+        </li>
+        <li *ngIf="user===0" class="nav-item">
+          <a class="nav-link" (click)="redirectUser('user/login')">login</a>
+        </li>
+        <li *ngIf="user===0" class="nav-item">
+          <a class="nav-link" (click)="redirectUser('user/signup')">signup</a>
+        </li>
+        <li *ngIf="isUserAdmin!==0" class="nav-item">
+          <a class="nav-link" (click)="redirectUser('admin/dashboard')">adminPage</a>
+        </li>
+        <li *ngIf="userRole!==null" class="nav-item">
+          <a class="nav-link" (click)="redirectUser('user/message')">messager</a>
+        </li>
+        <li *ngIf="!userRole" class="nav-item">
+          <a class="nav-link" (click)="redirectUser('user/login')">login</a>
+        </li>
+        <li *ngIf="!userRole" class="nav-item">
+          <a class="nav-link" (click)="redirectUser('user/signup')">signup</a>
+        </li>
+        <li *ngIf="userRole" class="nav-item">
+          <a class="nav-link" (click)="redirectUser('content/movie')">watch</a>
+        </li>
+      </ul>
+
+      <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+        <ul class="navbar-nav">
+          <li *ngIf="userRole" class="nav-item">
+            <a class="nav-link changeText" (click)="redirectUser('user/userProfile')"
+              [innerHTML]="'Welcome,   ' + getUserName()"> </a>
+          </li>
+          <li *ngIf="userRole" class="nav-item">
+            <a class="nav-link" style="color:red;" (click)="logoutUser()">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>

@@ -1,0 +1,55 @@
+<div @fadeIn style="overflow:unset;">
+<mat-sidenav-container class="dashboard-container">
+  <!-- Sidebar -->
+  <mat-sidenav mode="side" [(opened)]="isSidebarOpen" class="sidebar">
+    <mat-toolbar color="primary" class="sidebar-toolbar">
+      <button mat-icon-button (click)="toggleSidebar()">
+        <mat-icon>{{ isSidebarOpen ? 'menu_open' : 'menu' }}</mat-icon>
+      </button>
+      <span *ngIf="isSidebarOpen" class="logo">Admin Panel</span>
+    </mat-toolbar>
+
+    <mat-nav-list @scaleUp *ngIf="isSidebarOpen" class="nav-list" style="overflow:hidden !important;">
+      <a mat-list-item (click)="setActiveTab('dashboard')" [class.active]="activeTab === 'dashboard'" class="nav-item my-3">
+        <mat-icon class="nav-icon">dashboard</mat-icon>
+        <span class="nav-text">Dashboard</span>
+      </a>
+      <a mat-list-item (click)="setActiveTab('manageUsers')" [class.active]="activeTab === 'manageUsers'" class="nav-item my-3">
+        <mat-icon class="nav-icon">group</mat-icon>
+        <span class="nav-text">Manage Users</span>
+      </a>
+      <a mat-list-item (click)="setActiveTab('settings')" [class.active]="activeTab === 'settings'" class="nav-item my-3">
+        <mat-icon class="nav-icon">settings</mat-icon>
+        <span class="nav-text">Settings</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Main content area -->
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="content-toolbar">
+      <button
+        mat-icon-button
+        *ngIf="!isSidebarOpen"
+        class="toggle-sidebar-button"
+        (click)="toggleSidebar()">
+
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>User Control Dashboard</span>
+    </mat-toolbar>
+
+    <div @routeAnimations class="content bg-dark">
+      <div *ngIf="activeTab === 'dashboard'" class="content-section bg-custom-background">
+        <app-update-admin-settings></app-update-admin-settings>
+      </div>
+      <div *ngIf="activeTab === 'manageUsers'" class="content-section bg-custom-background">
+        <app-user-purchasing></app-user-purchasing>
+      </div>
+      <div *ngIf="activeTab === 'settings'" class="content-section bg-custom-background">
+        <app-update-user-settings></app-update-user-settings>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+</div>

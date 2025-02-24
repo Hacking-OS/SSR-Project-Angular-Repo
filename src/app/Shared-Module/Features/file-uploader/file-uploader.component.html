@@ -1,0 +1,19 @@
+<div class="form-group mt-3">
+  <div *ngIf="uploadingFile==undefined" class="file-upload">
+    <label for="file-input" class="custom-file-upload">
+      <i class="fa fa-cloud-upload"></i> Choose File
+    </label>
+    <input id="file-input" type="file" name="productImage" (change)="onFileSelected($event)" required>
+  </div>
+
+  <div *ngIf="uploadingFile" class="upload-container">
+    <app-progress-bar
+      class="progress-bar"
+      (progressBar)="onProgressBar($event)"
+      [checkFile]="uploadingFile">
+    </app-progress-bar>
+    <button *ngIf="uploadingFile" class="btn btn-danger btn-sm rounded-pill mx-3" (click)="deleteFile()">Delete</button>
+  </div>
+  <!-- <app-progress-bar (progressBar)="onProgressBar($event)" [checkFile]="uploadingFile"></app-progress-bar>
+  <button *ngIf="uploadingFile" class="btn btn-danger ml-3" (click)="deleteFile()">delete</button> -->
+</div>

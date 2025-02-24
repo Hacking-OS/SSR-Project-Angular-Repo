@@ -1,0 +1,39 @@
+<!-- <p>product-view works!</p> -->
+<app-header></app-header>
+<!-- {{ productParams|json }} -->
+<div class="container-fluid mt-4">
+  <div class="card bg-dark">
+    <div class="card-header bg-header-color">
+      <h2 [innerHTML]="productParams?.name"></h2>
+    </div>
+    <div class="card-body text-white">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <div>
+            <img [src]="baseUrl+'/images/productImages/'+productParams?.image" class="card-img" alt="" (error)="onImageError($event)" height="250px">
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class=" ml-4 mt-2">
+            <div class="col-sm-6 mt-3" [innerHTML]="htmlPropertiesForProductView('Price',productParams?.price)"></div>
+            <div class="col-sm-6 mt-3"
+              [innerHTML]="htmlPropertiesForProductView('Description',productParams?.description)"></div>
+            <div class="col-sm-6 mt-3"
+              [innerHTML]="htmlPropertiesForProductView('Category',productParams?.categoryName)">
+            </div>
+            <div class="col-sm-6 mt-3"
+              [innerHTML]="htmlPropertiesForProductView('Sub-Category',productParams?.subCategoryName)">
+            </div>
+            <div class="col-sm-6 mt-3">
+              <button type="button" [ngClass]="getClass()">{{ (productParams?.status==1)?"Active":"In-Active"
+                }}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+
+    </div>
+  </div>
+</div>

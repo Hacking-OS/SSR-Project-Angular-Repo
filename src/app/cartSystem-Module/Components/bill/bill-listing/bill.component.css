@@ -1,0 +1,40 @@
+/* table,
+tr,
+td {
+  padding: 7px;
+  text-align: center;
+}
+
+tr:hover {
+  background-color: rgba(0, 0, 0, .075);
+} */
+
+
+.btn-hover-animation {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-hover-animation:hover {
+  animation: borderColorChange 6s linear infinite;
+  /* background-color: #1976d2; Change to a suitable hover color */
+  color:white;
+  transform: scale(1.05); /* Slightly increase size */
+}
+
+@keyframes borderColorChange {
+  0% {
+    background-color: #4A148C;
+  }
+  25% {
+    background-color: #6A1B9A;
+  }
+  50% {
+    background-color: #8E24AA;
+  }
+  75% {
+    background-color: #AB47BC;
+  }
+  100% {
+    background-color: #4A148C;
+  }
+}

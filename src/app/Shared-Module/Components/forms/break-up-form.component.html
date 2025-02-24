@@ -1,0 +1,177 @@
+<div class="container">
+  <form [formGroup]="reScheduleForm" (ngSubmit)="onSubmit()">
+    <button type="button" class="btn btn-primary m-4 mt-4" (click)="addInstallmentDetails();">Add</button>
+    <div formArrayName="installmentDetailsArray">
+      <div *ngFor="let installmentDetails of installmentDetailsArray.controls; let i = index" [formGroupName]="i"
+        class="mb-4">
+        <h4>Installment Details {{i + 1}}</h4>
+        <button type="button" class="btn btn-primary m-4 mt-4" (click)="removeAt(i)">remove</button>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label>Installment Type</label>
+            <div>
+              <label class="form-check-inline">
+                <input type="radio" formControlName="installmentType" value="equal" /> Equal Installment
+              </label>
+              <label class="form-check-inline">
+                <input type="radio" formControlName="installmentType" value="variable" /> Variable Installment
+              </label>
+
+              <div *ngIf="installmentDetails.get('installmentType')?.errors?.['required']" class="text-danger">
+                Installment type is required.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label>Amount</label>
+            <input type="number" class="form-control" formControlName="amount" [name]="'amount_'+ i" [id]="'amount_'+ i"
+              (input)="getEqualInstallmentIndexUpdate(i);updateInstallmentTotals();" />
+            <small *ngIf="installmentDetails.get('amount')?.errors?.['required']" class="text-danger">Amount is
+              required.</small>
+            <small *ngIf="installmentDetails.get('amount')?.errors?.['max']" class="text-danger">Amount cannot exceed {{
+              QHTotalAmount }}.</small>
+          </div>
+
+          <div class="col-md-4">
+            <label>Repayment Months</label>
+            <select [name]="'repaymentMonths_'+ i" [id]="'repaymentMonths_'+ i" class="form-control"
+              formControlName="repaymentMonths" (change)="getEqualInstallmentIndexUpdate(i);updateInstallmentTotals();">
+              <option value="" disabled>Select months</option>
+              <option *ngFor="let month of repaymentMonthsOptions" [value]="month">{{ month }}</option>
+            </select>
+            <small *ngIf="installmentDetails.get('repaymentMonths')?.errors?.['required']" class="text-danger">Repayment
+              months are required.</small>
+          </div>
+
+          <div class="col-md-4">
+            <label>Reminder Date</label>
+            <input type="date" class="form-control" formControlName="reminderDate" [name]="'reminderDate_'+ i"
+              [id]="'reminderDate_'+ i" />
+            <small *ngIf="installmentDetails.get('reminderDate')?.errors?.['required']" class="text-danger">Reminder date
+              is
+              required.</small>
+          </div>
+        </div>
+
+        <div formArrayName="variable_Installments" class="mb-3">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Installment #</th>
+                <th>Months for Repayment</th>
+                <th>Installment Amount</th>
+                <th>Total Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <!-- <span *ngIf="(installmentDetails.get('variable_Installments') as )"></span> -->
+              <tr *ngFor="let equalInstallment of installmentDetails.get('variable_Installments')['controls']; let j = index" [formGroupName]="j">
+              <!-- <tr *ngFor="let equalInstallment of getVariableInstallments(i).controls; let j = index" [formGroupName]="j"> -->
+                <td>Equal Installment {{ j + 1 }}</td>
+                <td>
+                  <select [id]="'MonthsForRepayment_'+j" [name]="'MonthsForRepayment_'+j" class="form-control"
+                    formControlName="MonthsForRepayment" (change)="updateTotalAmount(i);updateInstallmentTotals();">
+                    <option value="" disabled>Select months</option>
+                    <option *ngFor="let month of repaymentMonthsOptions" [value]="month">{{ month }}</option>
+                  </select>
+                  <small *ngIf="equalInstallment.get('MonthsForRepayment')?.errors?.['required']"
+                    class="text-danger">Repayment months are required.</small>
+                </td>
+
+                <td>
+                  <input [id]="'installmentAmount_'+j" [name]="'installmentAmount_'+j" type="number" class="form-control"
+                    formControlName="installmentAmount" placeholder="Enter amount"
+                    (input)="updateTotalAmount(i);updateInstallmentTotals();" />
+                  <small *ngIf="equalInstallment.get('installmentAmount')?.errors?.['required']"
+                    class="text-danger">Installment amount is required.</small>
+                  <small *ngIf="equalInstallment.get('installmentAmount')?.errors?.['max']" class="text-danger">Amount
+                    cannot
+                    exceed {{ QHTotalAmount }}.</small>
+                </td>
+                <td>
+                  <span> <b [innerHTML]="(equalInstallment.get('totalAmount')?.value)"></b></span>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td></td>
+                <td> <b>{{ totalMonthsArray[i] }} </b> </td>
+                <td></td>
+                <td>
+                  <b> {{ (totalAmountsArray[i]) }} </b>
+                  <span *ngIf="installmentDetails.get('variable_Installments')?.hasError('maxInstallmentExceeded')"><br>
+                    <small class="text-danger">Amount must be equal to qh Amount</small></span>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="text-center mb-3">
+      <br>
+      <span><small class="text-danger">{{ invalidAmount }}</small></span>
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-success" [disabled]="reScheduleForm.invalid">Submit</button>
+    </div>
+  </form>
+</div>
+
+
+
+
+<!-- <form [formGroup]="form">
+  <div formArrayName="outerFormArray">
+    <div *ngFor="let outerGroup of form.controls.outerFormArray['controls']; let i = index">
+      <div [formGroupName]="i">
+        <div formArrayName="innerFormArray">
+          <div *ngFor="let innerGroup of outerGroup.controls.innerFormArray['controls']; let j = index">
+            <div [formGroupName]="j">
+              <label for="name">Name:</label>
+              <input type="text" formControlName="name">
+
+              <label for="age">Age:</label>
+              <input type="text" formControlName="age">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</form> -->
+
+
+
+
+<!-- <div formArrayName="installmentDetailsArray">
+  <div *ngFor="let detail of installmentDetailsArray.controls; let i = index" [formGroupName]="i">
+      <div *ngFor="detail.get('variable_Installments').controls; let j = index" [formGroupName]="j">
+        <input formControlName="installmentAmount" placeholder="Installment Amount" />
+        <input formControlName="MonthsForRepayment" placeholder="Months for Repayment" />
+        <input formControlName="totalAmount" placeholder="Total Amount" />
+    </div>
+  </div>
+</div> -->
+
+<!-- <div formArrayName="installmentDetailsArray">
+  <div *ngFor="let detail of installmentDetailsArray.controls; let i = index" [formGroupName]="i">
+    <div formArrayName="variable_Installments">
+      <div *ngFor="let installment of getVariableInstallmentsArray(detail)?.controls; let j = index" [formGroupName]="j">
+        <input formControlName="installmentAmount" placeholder="Installment Amount" />
+        <input formControlName="MonthsForRepayment" placeholder="Months for Repayment" />
+        <input formControlName="totalAmount" placeholder="Total Amount" />
+
+      </div>
+    </div>
+  </div>
+</div> -->

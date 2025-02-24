@@ -1,0 +1,60 @@
+<div class="chart-row">
+  <div class="chart-container">
+    <h3>{{ barChartData.title }}</h3>
+    <div echarts [options]="barChartOptions" class="echart"></div>
+  </div>
+
+  <div class="chart-container">
+    <h3>{{ lineChartData.title }}</h3>
+    <div echarts [options]="lineChartOptions" class="echart"></div>
+  </div>
+</div>
+
+<div class="chart-row">
+  <div class="chart-container">
+    <h3>{{ pieChartData.title }}</h3>
+    <div echarts [options]="pieChartOptions" class="echart"></div>
+  </div>
+
+  <div class="chart-container">
+    <h3>{{ scatterChartData.title }}</h3>
+    <div echarts [options]="scatterChartOptions" class="echart"></div>
+  </div>
+</div>
+
+<div class="chart-row">
+  <div class="chart-container">
+    <h3>{{ radarChartData.title }}</h3>
+    <div echarts [options]="radarChartOptions" class="echart"></div>
+  </div>
+
+  <!-- Additional Graphs with the same data -->
+  <div class="chart-container">
+    <h3>{{ barChartData.title }} (Copy)</h3>
+    <div echarts [options]="barChartOptions" class="echart"></div>
+  </div>
+</div>
+
+<div class="chart-row">
+  <div class="chart-container">
+    <h3>{{ lineChartData.title }} (Copy)</h3>
+    <div echarts [options]="lineChartOptions" class="echart"></div>
+  </div>
+
+  <div class="chart-container">
+    <h3>{{ pieChartData.title }} (Copy)</h3>
+    <div echarts [options]="pieChartOptions" class="echart"></div>
+  </div>
+</div>
+
+<div class="chart-row">
+  <div class="chart-container">
+    <h3>{{ scatterChartData.title }} (Copy)</h3>
+    <div echarts [options]="scatterChartOptions" class="echart"></div>
+  </div>
+
+  <div class="chart-container">
+    <h3>{{ radarChartData.title }} (Copy)</h3>
+    <div echarts [options]="radarChartOptions" class="echart"></div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+
+<div *ngIf="isVideo===true else audioTrack" class="video-container">
+  <video id="player" controls crossorigin playsinline [poster]="mediaFiles.thumbnail" [src]="mediaFiles.url">
+    <!-- <source [src]="mediaFiles.url" type="video/mp4"> -->
+    <source [src]="mediaFiles.url" type="video/mp4" data-quality="720">
+    <source [src]="mediaFiles.url" type="video/mp4" data-quality="480">
+    <source [src]="mediaFiles.url" type="video/mp4" data-quality="360">
+    <source [src]="mediaFiles.url" type="video/mp4" data-quality="1080">
+  </video>
+
+  <!-- <video id="player" class="full-page-video" playsinline controls [src]="mediaFiles.url" poster="assets/thumbnail.jpg">
+    <source [src]="mediaFiles.url" type="video/x-matroska" />
+  </video> -->
+</div>
+
+<ng-template #audioTrack>
+  <div class="video-container">
+    <audio id="player" class="full-page-video" crossorigin playsinline controls  [src]="mediaFiles.url">
+      <source [src]="mediaFiles.url" type="audio/mp4" />
+          <!-- Optional: Add additional formats for better browser compatibility -->
+    <!-- <source [src]="mediaFiles.url" type="audio/mpeg" />
+    <source [src]="mediaFiles.url" type="audio/ogg" /> -->
+
+      <!-- <source [src]="mediaFiles.url" type="audio/mp4" /> -->
+      <!-- <source [src]="mediaFiles.url" type="video/x-matroska" /> -->
+    </audio>
+  </div>
+</ng-template>

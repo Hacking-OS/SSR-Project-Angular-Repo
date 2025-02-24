@@ -1,0 +1,44 @@
+<app-header></app-header>
+<div class="container">
+  <p-table styleClass="p-datatable-sm p-datatable-gridlines" [value]="formArray.controls" [lazy]="true" [paginator]="true" [rows]="10"
+    (onLazyLoad)="loadRecords($event)" [totalRecords]="totalRecords" responsiveLayout="stack">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item let-i="rowIndex">
+      <tr>
+        <td>{{ item.value.name }}</td>
+        <td>{{ item.value.age }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <form [formGroup]="demo" class="mt-5">
+    <p-table styleClass="p-datatable-sm p-datatable-gridlines" [value]="item.controls" [lazy]="true" [paginator]="true" [rows]="10"
+      (onLazyLoad)="loadRecords($event)" [totalRecords]="totalRecords" responsiveLayout="stack">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-item let-i="rowIndex">
+        <tr>
+          <td>{{ item.value.name }}</td>
+        <td>{{ item.value.age }}</td>
+          <!-- <td>{{ item.name }}</td>
+          <td>{{ item.age }}</td> -->
+        </tr>
+      </ng-template>
+    </p-table>
+  </form>
+</div>
+
+
+<div class="mt-5">
+  <p-paginator></p-paginator>
+</div>
+<app-footer></app-footer>

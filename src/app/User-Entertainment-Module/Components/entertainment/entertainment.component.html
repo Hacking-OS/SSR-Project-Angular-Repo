@@ -1,0 +1,16 @@
+<app-header></app-header>
+<div *ngIf="mediaFiles.length > 0; else noMedia" class="cards-container">
+  <div class="card bg-dark" *ngFor="let file of mediaFiles;">
+    <img [src]="file.thumbnail" [alt]="file.fileName" class="thumbnail">
+    <div class="card-content">
+      <h2 [title]="file.fileName">
+        {{ extractEpisodeInfo(file.fileName) }}
+      </h2>
+      <p><button class="mx-2" (click)="createUrl_IsVideo(file.fileName, true)">Video</button>
+        <button  (click)="createUrl_IsVideo(file.fileName, false)">Audio</button></p>
+    </div>
+  </div>
+</div>
+<ng-template #noMedia>
+  <p>No media files available.</p>
+</ng-template>

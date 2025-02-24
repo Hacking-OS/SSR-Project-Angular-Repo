@@ -1,0 +1,213 @@
+#loader {
+  /* position: absolute; */
+  object-fit: cover;
+}
+
+#loader2 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 120px;
+  height: 120px;
+  margin: -76px 0 0 -76px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+#myDiv {
+  display: none;
+}
+
+#myDiv2 {
+  display: block;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.nav-link {
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  background-color: cyan;
+  border-width: 2px;
+  border-radius: 25px;
+}
+
+.changeText {
+  white-space: nowrap;        /* Prevent the text from wrapping */
+  overflow: hidden;           /* Hide the overflowing text */
+  text-overflow: ellipsis;    /* Add ellipsis (...) when the text overflows */
+  /* display: inline-block;      Ensure it behaves properly with ellipsis */
+  /* vertical-align: middle;     Align the text vertically if needed */
+}
+
+.changeText:hover {
+  color: white !important;
+  text-decoration: underline;
+}
+
+
+
+.navbar {
+  background: linear-gradient(90deg, #4A148C, #6A1B9A, #8E24AA, #AB47BC);
+  /* padding: 15px 20px; */
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar a {
+  /* color: white; */
+  text-decoration: none;
+  padding: 8px;
+  margin: 1px;
+  font-weight: bold;
+  transition: background 0.3s, color 0.3s;
+  border-radius: 5px;
+}
+
+.navbar a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  /* color: #AB47BC; */
+  /* color: #032831; */
+  color: wheat;
+  text-decoration: underline;
+}
+
+
+
+@media (max-width: 768px) {
+  .navbar-nav {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .navbar-collapse {
+    text-align: center;
+  }
+
+  .nav-item {
+    width: 100%;
+    text-align: center;
+  }
+
+
+
+  
+
+
+  /* .navbar-brand {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+  } */
+
+  /* .navbar-toggler {
+    position: absolute;
+    right: 10px;
+  } */
+}
+
+/* Badge styles */
+.nav-link .badge {
+  background-color: #80deea; /* Light cyan pastel */
+  color: #263238; /* Dark grayish text */
+  font-size: 0.75em; /* Smaller font size */
+  padding: 0.2rem 0.35rem; /* Compact padding */
+  border-radius: 12px; /* Rounded corners */
+  margin-left: -0.6rem; /* Minimal margin between text and badge */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative; /* Enable positioning */
+  top: -0.4rem; /* Adjust the position vertically */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+  animation: bounce 0.8s ease-out; /* Add bounce animation */
+}
+
+/* When the count is null, show a neutral gray */
+.nav-link .non {
+  background-color: #fff59d; /* Light yellow pastel */
+  color: #263238; /* Dark grayish text */
+  font-size: 0.75em;
+  padding: 0.2rem 0.35rem;
+  border-radius: 12px;
+  margin-left: -0.5rem; /* Minimal margin */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  top: -0.4rem; /* Align it to the top of the last letter */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  animation: bounce 0.8s ease-out; /* Add bounce animation */
+}
+
+/* Hover effect */
+.nav-link .badge:hover {
+  background-color: #4dd0e1; /* Slightly darker shade of cyan on hover */
+  transform: scale(1.1); /* Slightly enlarge the badge on hover */
+}
+
+/* Same effect for the "0" state */
+.nav-link .non:hover {
+  background-color: #fff176; /* Slightly darker shade of yellow on hover */
+  transform: scale(1.1); /* Slightly enlarge the badge on hover */
+}
+
+/* Bounce animation */
+@keyframes bounce {
+  0% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+
+/* #navbarSupportedContent::before{
+  transition: 15s ease-in;
+}
+
+#navbarSupportedContent::after{
+  transition: 15s ease-out;
+} */
+
+
+
+/* #navbarSupportedContent.show {
+  max-height: 1000px;
+  opacity: 1;
+} */
+
+/* Optionally for ::before and ::after effects */
+/* #navbarSupportedContent::before,
+#navbarSupportedContent::after {
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), white, rgba(255, 255, 255, 0));
+} */

@@ -1,0 +1,67 @@
+.user-management-container {
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.mat-table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.mat-header-row {
+  background-color: #3f51b5;
+  color: white;
+}
+
+.mat-header-cell {
+  font-weight: bold;
+}
+
+button {
+  margin: 5px;
+}
+
+mat-form-field {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.mat-dialog-content {
+  padding: 20px;
+  background-color: #fff;
+}
+
+.mat-select {
+  width: 100%;
+}
+
+.add-user-form {
+  margin-bottom: 20px;
+}
+
+.mat-form-field {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+button {
+  margin-top: 10px;
+}
+
+.user-table {
+  margin-top: 20px;
+}
+
+.form-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+}

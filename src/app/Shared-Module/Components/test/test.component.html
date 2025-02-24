@@ -1,0 +1,78 @@
+<app-loader  *ngIf="isLoaderVisible" [progress]="progress" [status]="status"></app-loader>
+
+
+
+<div class="container mx-auto w-full h-full">
+  <div class="container mx-auto w-full h-full">
+    <div class="flex flex-col items-center gap-4 py-4">
+      <div class="p-2">
+        <input type="text" id="title" name="title" placeholder="Enter title"
+          class="w-72 h-10 border border-gray-500 rounded p-1">
+      </div>
+      <div class="p-2">
+        <input type="file" id="videoUpload" name="video" accept="video/*">
+      </div>
+      <div class="p-2">
+        <button (click)="uploadVideo()" class="bg-blue-500 text-white w-72 px-4 py-2 font-semibold rounded">Upload
+          Video</button>
+      </div>
+    </div>
+    <div id="message"></div>
+
+    <!-- Video List -->
+    <div id="videoList" class="flex flex-wrap justify-center">
+      <div *ngFor="let videoData of videoList"
+        class="flex flex-col items-center w-72 bg-gray-100 rounded-lg shadow-md p-4 mb-4">
+        <img [src]="'http://localhost:8080/' + (videoData.thumb || 'default_thumb.jpg')" [alt]="videoData.title"
+          [attr.data-video]="'http://localhost:8080/' + (videoData.video[0]?.['1080'] || 'default_video.m3u8')"
+          class="w-full object-cover rounded cursor-pointer mb-2" (click)="openModal($event.target)" data-bs-toggle="modal" data-bs-target="#exampleModal" />
+          
+          <!-- [attr.data-video]="'http://localhost:8080/data/' + (videoData.video[0]?.[videoData.title+'_1080'] || 'default_video.m3u8')" -->
+        <div class="text-lg font-bold">{{ videoData.title }}</div>
+      </div>
+    </div>
+
+    <!-- <div *ngFor="let video of videoItem.video">
+    <p>1080p: <a [href]="video.testee_1080" target="_blank">Watch 1080p</a></p>
+    <p>720p: <a [href]="video.testee_720" target="_blank">Watch 720p</a></p>
+    <p>480p: <a [href]="video.testee_480" target="_blank">Watch 480p</a></p>
+  </div> -->
+    <!-- Modal -->
+    <!-- <div id="modal" #modal class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div class="relative">
+    <video #video controls class="w-full h-auto bg-black"></video>
+    <button (click)="closeModal()" class="absolute top-2 right-2 text-white">Close</button>
+  </div>
+</div>
+
+
+    <div id="loader" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+      <div class="loader"></div>
+    </div> -->
+    <!-- Modal for Video -->
+<!-- Backdrop -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body d-flex justify-content-center">
+        <video #video controls class="video-responsive"></video>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()" >Close</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+       <!-- <div class="modal-body">
+        <video #video controls class="bg-black rounded-t-lg" ></video>
+      </div> -->
+
+
+  </div>

@@ -1,0 +1,113 @@
+.message-popup {
+  /* position: sticky; */
+  /* bottom: 20px;
+  right: 20px; */
+  overflow:scroll;
+  /* height:auto !important; */
+}
+
+.message {
+  background-color: white;
+  color: black;
+  padding: 10px;
+  margin-bottom: 100px;
+  border-radius: 5px 5px 0px 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+form {
+  bottom:15px;
+  /* right: 20px; */
+}
+
+
+/* src/app/chat/chat.component.css */
+.chat-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+.messages {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+
+.message {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.admin-badge {
+  background-color: #d9534f;
+  color: white;
+  padding: 2px 5px;
+  margin-left: 10px;
+  border-radius: 3px;
+}
+
+.input-container {
+  display: flex;
+}
+
+
+/* src/app/chat/chat.component.css */
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  font-style: italic;
+  color: #888;
+  margin-top: 10px;
+}
+
+.typing-indicator .dot {
+  animation: blink 1.4s infinite both;
+}
+
+.typing-indicator .dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-indicator .dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0.2;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+
+
+
+input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  margin-left: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #5bc0de;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #31b0d5;
+}

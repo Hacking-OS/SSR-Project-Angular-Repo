@@ -1,0 +1,44 @@
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Space between cards */
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.card {
+  flex: 1 1 calc(25% - 20px); /* 4 cards per row with space */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin: 10px 0;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.thumbnail {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.card-content {
+  text-align: center;
+}
+
+.card-content h2 {
+  margin: 10px 0;
+  font-size: 1.2em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-content button {
+  padding: 10px 20px;
+  background-color: #4A148C;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

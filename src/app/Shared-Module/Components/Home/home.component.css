@@ -1,0 +1,321 @@
+/* General List Item Styles */
+.search-item, .category-item {
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+  color: #fff;
+}
+
+.search-item:last-child, .category-item:last-child {
+  border-bottom: none;
+}
+
+/* Product Card Styles */
+.product-card {
+  background: transparent; /* Remove background color */
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  color: #333; /* Darker color for text */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.1); /* Soft border */
+}
+
+.product-card:hover {
+  transform: translateY(-10px); /* Smooth hover effect */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */
+}
+
+/* Product Image */
+.product-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.05); /* Scale up image slightly on hover */
+}
+
+/* Text Styling */
+h4.text, .product-title {
+  margin-top: 10px;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: white; /* Dark text color */
+}
+
+p.text, .product-description {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  color: #666; /* Lighter text color */
+}
+
+/* Button Styles */
+.btn.btn-warning, .btn.btn-add-to-cart {
+  /* background-color: #00eec6; */
+  /* border: none; */
+
+    background: linear-gradient(270deg, #4A148C, #6A1B9A, #8E24AA, #AB47BC);
+    background-size: 200% 200%; /* For smooth gradient movement */
+    border: none;
+    padding: 10px 10px;
+    /* font-weight: bold; */
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 5s ease, box-shadow 3s ease;
+
+    /* Apply gradient animation */
+    animation: gradient 12s ease infinite;
+
+  /* Hover Effect for Cart Button */
+
+  /* background: linear-gradient(270deg, #4A148C, #6A1B9A, #8E24AA, #AB47BC, #4A148C);
+  padding: 10px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  animation:borderColorChange 5s infinite , gradient 8s ease infinite;
+  border-radius: 25px; */
+}
+
+.btn.btn-warning:hover, .btn.btn-add-to-cart:hover {
+  transform: scale(1.05); /* Slight scaling effect on hover */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Shadow on hover */
+}
+/* Review Section */
+.review-container {
+  display: flex;
+  align-items: center;
+}
+
+.user-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.review-text {
+  flex: 1;
+}
+
+/* Star Rating */
+.star-rating {
+  margin-top: 5px;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 50% 50%; }
+  50% { background-position: 100% 50%; }
+  75% { background-position: 50% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Sidebar Animation */
+@keyframes borderColorChange {
+  0%, 100% { border: 2.8px solid #4A148C; }
+  25% { border: 2.8px solid #6A1B9A; }
+  50% { border: 2.8px solid #8E24AA; }
+  75% { border: 2.8px solid #AB47BC; }
+}
+
+.sidebar {
+  border: 2.8px solid #4A148C;
+  animation: borderColorChange 5s infinite;
+  padding: 15px;
+  color: white;
+}
+
+h4 {
+  color: white;
+}
+
+/* Loader Animation */
+.loader {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+/* Carousel Wrapper */
+.custom-carousel {
+  padding: 20px;
+  border-radius: 15px;
+  /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); */
+}
+
+/* Carousel Navigation Buttons */
+.custom-prev-btn, .custom-next-btn {
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: white;
+  font-size: 1.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.custom-prev-btn:hover, .custom-next-btn:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.btn-submit {
+  background-color: #4A148C; /* Button color */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+  background-color: #6A1B9A; /* Darker shade on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .product-card {
+    padding: 10px;
+  }
+
+  .product-title {
+    font-size: 1.1rem;
+  }
+
+  .product-description {
+    font-size: 0.9rem;
+  }
+}
+
+
+.card {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background-color: rgba(30, 30, 30, 0.8);
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.review-container {
+  display: flex;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: rgba(40, 40, 40, 0.7);
+}
+
+.user-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.review-text {
+  flex: 1;
+}
+
+.review-comment {
+  font-size: 1.1em;
+  margin-bottom: 5px;
+}
+
+.review-user {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.star-rating {
+  color: #f39c12; /* Star color */
+}
+
+.transparent-star {
+  color: rgba(255, 255, 255, 0.5); /* Color for transparent stars */
+}
+
+.review-divider {
+  border: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 10px 0;
+}
+
+.btn {
+  background-color: #007bff; /* Button color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+
+.reply-container {
+  background-color:rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  padding: 8px;
+  margin-bottom: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.reply-user {
+  font-weight: bold;
+}
+
+.reply-input {
+  display: flex;
+  margin-top: 10px;
+}
+
+.reply-input input {
+  flex: 1;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.reply-input input:focus {
+  outline: none;
+  border: 1px solid #007bff; /* Blue border on focus */
+}
+
+.btn-submit {
+  background-color: #28a745; /* Green button color */
+}
+
+.btn-submit:hover {
+  background-color: #218838; /* Darker green on hover */
+}

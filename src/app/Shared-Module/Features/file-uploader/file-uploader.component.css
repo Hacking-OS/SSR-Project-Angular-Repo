@@ -1,0 +1,49 @@
+.file-upload {
+  position: relative;
+  display: inline-block;
+}
+
+/* Styled Button */
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  color: #333;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.custom-file-upload:hover {
+  background-color: #e5e5e5;
+}
+
+/* Hidden File Input */
+#file-input {
+  position: absolute;
+  left: -9999px;
+}
+
+/* Icon */
+.custom-file-upload i {
+  margin-right: 5px;
+}
+
+
+.upload-container {
+  display: flex;
+  align-items: center;
+  width:100%;
+}
+
+/* Adjust styles as needed */
+.progress-bar {
+  flex: 1;
+  border-radius:50px;
+}
+
+/* Optional: Add margin to separate the button */
+.btn {
+  margin-left: 10px;
+}

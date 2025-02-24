@@ -1,0 +1,183 @@
+/* Background animation for the card */
+.animated-border {
+  position: relative;
+  overflow: hidden;
+}
+
+.animated-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(270deg, #4A148C, #6A1B9A, #8E24AA, #AB47BC, #4A148C);
+  background-size: 400% 400%;
+  animation: gradient 8s ease infinite;
+  z-index: 0;
+  opacity: 0.5; /* Adjust opacity to make text more readable */
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 50% 50%; }
+  50% { background-position: 100% 50%; }
+  75% { background-position: 50% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Make text stand out */
+.mat-card {
+  position: relative;
+  z-index: 1; /* Bring card content above the background */
+}
+
+/* Style the buttons */
+/* .custom-btn {
+  transition: transform 0.3s ease;
+}
+
+.custom-btn:hover {
+  transform: scale(1.05);
+} */
+
+/* Style for the error messages */
+
+
+/* Responsive Design */
+@media (max-width: 576px) {
+  .container {
+    margin-top: 5%; /* Adjust top margin for smaller screens */
+  }
+}
+
+
+
+/* Sign In button style */
+.custom-btn {
+  /* animation: borderColorChange 4s linear infinite; 4s is the duration, can be adjusted */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+  box-shadow: 0 4px 8px rgba(0, 188, 212, 0.5); /* Initial cyan box shadow */
+}
+
+.custom-btn:hover {
+  /* background-color: #ffeb3b; Change to yellowish on hover */
+  box-shadow: 0 6px 12px rgba(7, 245, 173, 0.7);
+}
+
+/* .btn-info:hover {
+ background-color: #ffeb3b; Change background color to yellowish on hover
+  box-shadow: 0 6px 12px rgba(157, 34, 214, 0.7);
+}
+
+.btn-warn:hover {
+   background-color: #ffeb3b; Ensure it also changes on hover
+  box-shadow: 0 6px 12px rgba(157, 34, 214, 0.7);
+} */
+
+/* Additional styles to keep button color consistent */
+.btn-info {
+  background-color: #00bcd4; /* Original background color */
+  color: white;
+}
+.btn-warn {
+  background-color: #ffeb3b; /* Original yellowish color */
+  color: white;
+}
+
+
+/* Styles for disabled buttons */
+.custom-btn:disabled {
+  background-color: #e0e0e0; /* Light grey background for disabled state */
+  color: rgba(0, 0, 0, 0.38); /* Darker text for disabled state */
+  box-shadow: 0 4px 8px rgba(0, 188, 212, 0.5); /* Maintain box shadow on disabled buttons */
+  cursor: not-allowed; /* Change cursor to indicate the button is not clickable */
+}
+
+/* Prevent hover effects on disabled buttons */
+.custom-btn:disabled:hover {
+  background-color: #e0e0e0; /* Keep the background color the same */
+  box-shadow: 0 4px 8px rgba(0, 188, 212, 0.5); /* Keep the box shadow the same */
+}
+/* Hover animations for buttons */
+/* .custom-btn:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s;
+} */
+
+/* Responsive styling for mobile */
+@media (max-width: 576px) {
+  .custom-btn {
+    width: 100%; /* Full width buttons on mobile */
+    margin-bottom: 10px; /* Spacing between buttons */
+  }
+}
+
+@keyframes rainbowBorder {
+  0% {
+    border: 2.8px solid #FF0000; /* Red */
+  }
+  16.67% {
+    border: 2.8px solid #FF7F00; /* Orange */
+  }
+  33.33% {
+    border: 2.8px solid #FFFF00; /* Yellow */
+  }
+  50% {
+    border: 2.8px solid #00FF00; /* Green */
+  }
+  66.67% {
+    border: 2.8px solid #00FFFF; /* Cyan */
+  }
+  83.33% {
+    border: 2.8px solid #0000FF; /* Blue */
+  }
+  100% {
+    border: 2.8px solid #8B00FF; /* Violet */
+  }
+}
+
+/* mat-form-field .mat-form-field-wrapper {
+  border: 2.8px solid #4A148C;
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+} */
+
+/* Make sure to add box shadow to the input field too */
+/* .mat-form-field .mat-mdc-form-field .mat-mdc-text-field-wrapper .mat-mdc-form-field-focus-overlay {
+  animation: rainbowBorder 4s linear infinite;
+  border: 2.8px solid transparent;
+  transition: border-color 0.3s ease;
+} */
+
+/* .custom-error-container {
+  margin: 0 !important;
+  padding: 0 !important;
+} */
+/* .mat-form-field .custom-error-container {
+  margin: 0 !important;
+  padding: 0 !important;
+} */
+/* mat-error {
+  margin: 0 !important;
+  padding: 0 !important;
+} */
+/* .custom-error-container {
+  margin: 0 !important;
+  padding: 0 !important;
+} */
+/* :host mat-error {
+  color: rgb(19, 235, 73) !important;
+} */
+/* ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  animation: rainbowBorder 4s linear infinite;
+  border: 2.8px solid transparent;
+  transition: border-color 0.3s ease;
+} */
+
+
+/* ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  animation: rainbowBorder 4s linear infinite;
+  border: 2.8px solid transparent;
+  transition: border-color 0.3s ease;
+} */

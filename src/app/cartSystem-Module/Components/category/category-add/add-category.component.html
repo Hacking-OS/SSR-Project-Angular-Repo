@@ -1,0 +1,54 @@
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+<!-- <p>category works!</p> -->
+<app-header></app-header>
+
+<div class="container-fluid mt-4">
+  <h2 class="mt-4 ml-4">Add Category</h2>
+  <form  #addCategoryForm='ngForm' (ngSubmit)="postData(addCategoryForm,false)">
+    <div class="row">
+      <div class="col-md-6">
+        <input class="form-control" type="text" #email="ngModel" name="catname" [(ngModel)]="userData.catname"
+          placeholder="Enter Category name: " required minlength="4">
+        <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="alert alert-danger" role="alert">
+          <div *ngIf="email?.errors?.['required']">Name is required. </div>
+          <div *ngIf="email?.errors?.['minlength']">Name must be greater than < 3. </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <button type="submit" class="btn btn-primary" name="submit" [disabled]="addCategoryForm.invalid">Add</button>
+        </div>
+      </div>
+  </form>
+</div>
+
+
+<div class="container-fluid mt-4">
+  <h2 class="mt-4 ml-4">Add SubCategory</h2>
+  <form  #addSubCategoryForm='ngForm' (ngSubmit)="postData(addSubCategoryForm,true)">
+    <div class="row">
+
+        <div class="col-md-6">
+          <select  class="form-control" name="catID" #catID="ngModel" [(ngModel)]="userData.catId">
+            <option *ngFor="let cat of catDropdown" [value]="cat.id">
+              {{ cat.name }}
+            </option>
+          </select>
+          </div>
+
+      <div class="col-md-6">
+        <input class="form-control" type="text" #catname="ngModel" name="catname" [(ngModel)]="userData.subCatName"
+          placeholder="Enter Category name: " required minlength="4">
+        <div *ngIf="catname?.invalid && (catname?.dirty || catname?.touched)" class="alert alert-danger" role="alert">
+          <div *ngIf="catname?.errors?.['required']">catname is required. </div>
+          <div *ngIf="catname?.errors?.['minlength']">catname must be greater than < 3. </div>
+          </div>
+        </div>
+        <div class="col-md-6 mt-3">
+          <button type="submit" class="btn btn-primary" name="submit" [disabled]="addSubCategoryForm.invalid">Add</button>
+        </div>
+      </div>
+  </form>
+</div>
+<app-footer></app-footer>
+<!-- <button style="color:blue;cursor:pointer" (click)="UpdateCategory(person.id)">forget password?</button> -->

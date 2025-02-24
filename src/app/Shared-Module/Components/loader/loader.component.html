@@ -1,0 +1,21 @@
+<!-- <div class="loader-container">
+  <div class="card loader2">
+    <p-progressBar mode="indeterminate" [style]="{'height': '9px', 'border-radius': '0px'}"></p-progressBar>
+    <p class="loading-text">Loading...</p>
+  </div>
+</div> -->
+<div class="loader-overlay">
+  <ng-container *ngIf="!progress; else showProgressBar">
+    <div class="loader">
+      <div class="loader-dot"></div>
+      <div class="loader-dot"></div>
+      <div class="loader-dot"></div>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #showProgressBar>
+  <div class="full-page-container">
+    <app-progress-bar [currentProgress]="progress" [currentStatus]="status"></app-progress-bar>
+  </div>
+</ng-template>

@@ -1,0 +1,21 @@
+<!-- <app-header></app-header> -->
+<div class="container-fluid">
+  <h3>{{ params?.isActive?"View User":"Update User"}}</h3>
+</div>
+<div *ngIf="userInfo.length>0" class="container-fluid">
+  <div class="card text-white bg-dark">
+    <div class="card-header">
+     <div >
+      You are Updating User: <a  class="text-primary link-offset-2 link-underline" [innerHTML]="userInfo[0].name"></a> and possession Email <a class="text-primary link-offset-2 link-underline" [innerHTML]="userInfo[0].email"></a>
+     </div>
+    </div>
+    <div class="card-body">
+      <img [id]="'image-preview_'+userInfo[0].id" [src]="baseUrl+'/images/profileImages/'+userInfo[0].image" alt="Image" class="rounded-circle" height="95px" width="95px" onerror="this.src='/assets/noImage.png'">
+      <span  class="mx-4" [innerHTML]="getInfo()"></span>
+    </div>
+    <div class="card-footer">
+      <!-- <p><a href="#" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Primary link</a></p> -->
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

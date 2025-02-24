@@ -1,0 +1,186 @@
+<!-- <p>messenger works!</p> -->
+<!-- {{  showMessages | json }} -->
+<app-header></app-header>
+<!-- <div class="container">
+  <div  class="bg-secondary">
+    <div *ngFor="let message of showMessages; let i = index">
+        <div class="row" >
+          <div class="col-md-12">
+            <div [ngClass]="{'float-left': message.userID !== userId, 'float-right': message.userID === userId}">
+              <div class="message">
+                <h3>{{ message.userName }}</h3>
+                <p>{{ message.userMessage }}</p>
+                <div class="clearfix">
+                  <small class="text-primary float-left">{{ message.messagedAt | date: "dd/MM/yyyy - hh:mm a" }}</small>
+                  <small> <a class="text-danger float-right" *ngIf="message.userID === userId"
+                      (click)="deleteMessage(message.uuid_User)">Delete</a></small>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+<!-- <div class="container darker">
+   <img src="/w3images/avatar_g2.jpg" alt="Avatar" class="right" style="width:100%;">
+      <p>Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
+      <span class="time-left">11:05</span>
+    </div> -->
+<!-- </div>
+</div> -->
+<div style="text-align:center">
+
+  <!-- src/app/chat/chat.component.html -->
+<!-- <div class="chat-container">
+
+  <div class="messages">
+    <div *ngFor="let msg of messages">
+      <div class="message">
+        <strong>{{ msg.userName }} ({{ msg.userEmail }})</strong>
+        <span *ngIf="msg.isAdmin" class="admin-badge">Admin</span>:
+        {{ msg.userMessage }}
+        <div class="timestamp">
+          <small>{{ msg.messagedAt | date:'short' }}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="input-container">
+    <input [(ngModel)]="userMessageFromIO" (keyup.enter)="sendMessageFromSocket()" placeholder="Type your message..." />
+    <button (click)="sendMessageFromSocket()">Send</button>
+  </div>
+</div> -->
+<!-- src/app/chat/chat.component.html -->
+<div class="chat-container">
+  <!-- Existing Messages Display -->
+  <div class="messages">
+    <div *ngFor="let msg of messages">
+      <div class="message">
+        <strong>{{ msg.userName }} ({{ msg.userEmail }})</strong>
+        <span *ngIf="msg.isAdmin" class="admin-badge">Admin</span>:
+        {{ msg.userMessage }}
+        <div class="timestamp">
+          <small>{{ msg.messagedAt | date:'short' }}</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typing Indicator -->
+    <div *ngIf="isTyping" class="typing-indicator">
+      <span>{{ typingUserName }} is typing</span>
+      <span class="dot">.</span>
+      <span class="dot">.</span>
+      <span class="dot">.</span>
+    </div>
+  </div>
+
+  <!-- Message Input -->
+  <div class="input-container">
+    <input [(ngModel)]="userMessageFromIO" (keyup.enter)="sendMessageFromSocket()" (input)="onTyping()" placeholder="Type your message..." />
+    <button (click)="sendMessageFromSocket()">Send</button>
+  </div>
+</div>
+
+
+
+  <!-- <h1>Socket.IO with Angular</h1>
+  <button (click)="sendMessageFromSocket()">Send Message to Server</button>
+  <p>{{ responseMessage }}</p> -->
+  <!-- <div class="chat-container">
+    <div class="messages">
+      <div *ngFor="let msg of messages">
+        <strong>{{ msg.username }}</strong>: {{ msg.message }}
+        <small>{{ msg.timestamp | date:'short' }}</small>
+      </div>
+    </div>
+    <input [(ngModel)]="message" (keyup.enter)="sendMessageFromSocket()" placeholder="Type your message..." />
+    <button (click)="sendMessageFromSocket()">Send</button>
+  </div>
+</div> -->
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="container-fluid">
+  <div class="container" style="height: 650px; overflow-y:scroll;">
+    <!-- <div class="container" style="height: 650px; overflow:scroll;"> -->
+    <!-- <div class="container-fluid"> -->
+    <div class="bg-secondary">
+      <div *ngFor="let message of showMessages; let i = index">
+        <!-- <div class=""> -->
+        <div class="row">
+          <div class="col-md-12">
+            <div>
+              <!-- <div [ngClass]="{'mt-5': i % 2 === 0}"> -->
+              <div class="message"
+                [ngClass]="{'float-left': message.userID !== userId, 'float-right': message.userID === userId}">
+                <h3>{{ message.userName }}</h3>
+                <p>{{ message.userMessage }}</p>
+                <div class="clearfix">
+                  <small class="text-primary float-left">{{ message.messagedAt | date: "dd/MM/yyyy - hh:mm a" }}</small>
+                  <small> <a class="text-danger float-right" *ngIf="message.userID === userId"
+                      (click)="deleteMessage(message.uuid_User)">Delete</a></small>
+                </div>
+              </div>
+              <!-- </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <br>
+    <div class="container">
+
+      <form #myForm='ngForm' (ngSubmit)="sendMessage(myForm)">
+        <div class=" row">
+          <div class="col-md-8">
+            <input class="form-control" type="text" #email="ngModel" name="userMessage" [(ngModel)]="userMessage"
+              placeholder="Enter Message: " required minlength="4">
+            <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="alert alert-danger" role="alert">
+              <div *ngIf="email?.errors?.['required']">Message is required. </div>
+              <div *ngIf="email?.errors?.['minlength']">Message must be greater than < 3. </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <button class="btn btn-primary" type="submit" name="submit" [disabled]="myForm.invalid">submit</button>
+            </div>
+          </div>
+      </form>
+    </div>
+  </div>
+  <br> <br>
+  <!-- <div class="bg-secondary" *ngFor="let message of showMessages">
+      <div [ngClass]="{'float-left':message.userID!==userId,'float-right':message.userID===userId}">
+        <div class="mt-5 message">
+          <h3>{{ message.userName }}</h3>
+          <p>{{ message.userMessage }}</p>
+          <span [ngClass]="{'float-right':message.userID===userId}">
+            <small class="text-primary">{{ message.messagedAt|date:"dd/MM/yyyy - HH:mm:ss a" }}</small>
+          </span>
+          <a class="text-primary" [hidden]="message.userID!==userId"
+            (click)="deleteMessage(message.uuid_User)">Delete</a>
+
+          </div>
+      </div>
+    </div> -->

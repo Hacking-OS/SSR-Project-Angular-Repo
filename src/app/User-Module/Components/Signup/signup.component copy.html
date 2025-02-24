@@ -1,0 +1,127 @@
+<!-- <p>signup works!</p> -->
+<app-header></app-header>
+<div *ngIf="this.message!=null"
+  style="color:white;background-color:red;border-radius:25px;text-align:center;padding:20px;">{{ this.message }}</div>
+<div class="container-fluid">
+  <form #myForm='ngForm' (ngSubmit)="postData(myForm)" class="m-5">
+    <div class="m-5">
+      <div class="row">
+        <div class="col-md-6">
+          <input class="form-control" type="text" #first="ngModel" name="name" [(ngModel)]="userData.firstName"
+            placeholder="Enter FirstName: " required minlength="4" (ngModelChange)="updateName()">
+          <div *ngIf="first?.invalid && (first?.dirty || first?.touched)" class="alert alert-danger w-25" role="alert">
+            <div *ngIf="first?.errors?.['required']">first name is required. </div>
+            <div *ngIf="first?.errors?.['minlength']">first name must be greater than < 3. </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <input class="form-control" type="text" #last="ngModel" name="last" [(ngModel)]="userData.lastName"
+              placeholder="Enter LastName: " required minlength="4" (ngModelChange)="updateName()">
+            <div *ngIf="last?.invalid && (last?.dirty || last?.touched)" class="alert alert-danger w-25" role="alert">
+              <div *ngIf="last?.errors?.['required']">last name is required. </div>
+              <div *ngIf="last?.errors?.['minlength']">last name must be greater than < 3. </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-4">
+            <div class="col-md-6">
+              <span class="form-control">{{ FullName }}</span>
+            </div>
+            <div class="col-md-6">
+              <input class="form-control" type="email" #email="ngModel" name="email" [(ngModel)]="userData.email"
+                placeholder="Enter email: " required minlength="4">
+              <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="alert alert-danger w-25"
+                role="alert">
+                <div *ngIf="email?.errors?.['required']">Email is required. </div>
+                <div *ngIf="email?.errors?.['minlength']">Email must be greater than < 3. </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-md-6">
+                <input class="form-control" type="password" #password="ngModel" name="password"
+                  [(ngModel)]="userData.password" placeholder="Enter Password: " required minlength="4">
+                <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="alert alert-danger w-25"
+                  role="alert">
+                  <div *ngIf="password?.errors?.['required']">Password is required. </div>
+                  <div *ngIf="password?.errors?.['minlength']">Password must be greater than < 3. </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <input class="form-control" type="number" #phone="ngModel" name="phone" [(ngModel)]="userData.phone"
+                    placeholder="Enter Phone Number: " required minlength="4">
+                  <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)" class="alert alert-danger w-25"
+                    role="alert">
+                    <div *ngIf="phone?.errors?.['required']">phone is required. </div>
+                    <div *ngIf="phone?.errors?.['minlength']">phone must be greater than < 3. </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="row mt-4">
+                  <div class="col-md-6">
+                    <!-- <ng-select [clearable]="false" #country="ngModel" name="country" [(ngModel)]="userData.country" [items]="countryList" bindLabel="name" bindValue="id" (ngModelChange)="getStateList(userData.country)" placeholder="Enter Country: "> -->
+                    <p-dropdown [options]="countryList" [(ngModel)]="userData.country" [filter]="true"
+                      [showClear]="false" placeholder="Enter Country" optionLabel="name" optionValue="id"
+                      (onChange)="getStateList(userData.country)">
+                    </p-dropdown>
+                    </ng-select>
+
+                  </div>
+                  <div class="col-md-6">
+                    <!-- <ng-select [clearable]="false" #state="ngModel" name="state" [(ngModel)]="userData.state"
+                      [items]="stateList" bindLabel="state_name" bindValue="country_id" placeholder="Enter State: ">
+                    </ng-select> -->
+
+                    <p-dropdown [options]="stateList" [(ngModel)]="userData.state" [filter]="true" [showClear]="false" placeholder="Enter State:" optionLabel="state_name" optionValue="country_id">
+                    </p-dropdown>
+                  </div>
+                </div>
+                <!-- placeholder="Enter Country: " -->
+
+                <div class="row mt-4">
+                  <div class="col-md-6">
+                    <ng-select [clearable]="false" #gender="ngModel" name="gender" [(ngModel)]="userData.gender"
+                      [items]="genderList" bindLabel="genderLabel" bindValue="GenderVal" placeholder="Enter Gender: ">
+                      <!-- <ng-option *ngFor="let country of countries" [value]="country">{{country}}</ng-option> -->
+                    </ng-select>
+                  </div>
+                  <div class="col-md-6">
+                    <input class="form-control" type="text" #city="ngModel" name="city" [(ngModel)]="userData.city"
+                      placeholder="Enter City: ">
+                  </div>
+                </div>
+
+
+
+                <div class="row mt-4">
+                  <div class="col-md-6">
+                    <input class="form-control" type="date" #dob="ngModel" name="dob" [(ngModel)]="userData.dob">
+                  </div>
+                  <div class="col-md-6">
+                    <app-file-uploader (uploadParamsEmit)="onFileSelected($event)"></app-file-uploader>
+                    <!-- <input class="form-control" type="text" #address="ngModel" name="address"
+                      [(ngModel)]="userData.address"> -->
+                  </div>
+                </div>
+                <div class="row mt-4">
+                  <div class="col-md-6">
+                    <input class="form-control" type="text" #address2="ngModel" name="address2"
+                      [(ngModel)]="userData.address2" placeholder="Enter Address2: ">
+                  </div>
+                  <div class="col-md-6">
+                    <input class="form-control" type="text" #address="ngModel" name="address"
+                      [(ngModel)]="userData.address" placeholder="Enter Address: ">
+                  </div>
+                </div>
+                <br> <br>
+                <button type="submit" name="submit" [disabled]="myForm.invalid"
+                  class="btn btn-outline-primary mr-5">submit</button>
+                <button type="button" class="btn btn-outline-warning"
+                  (click)="redirectUser('user/login')">login</button>
+              </div>
+  </form>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,8 @@
+.bg-header-color{
+  background: linear-gradient(145deg, #4A148C, #6A1B9A, #8E24AA, #AB47BC);
+  color: white;
+}
+
+img{
+  border-radius: 25px;
+}

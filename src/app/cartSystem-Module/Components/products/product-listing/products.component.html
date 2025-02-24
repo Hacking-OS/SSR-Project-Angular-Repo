@@ -1,0 +1,249 @@
+<!-- <p>products works!</p> -->
+<app-header></app-header>
+<div class="container-fluid">
+  <br>
+  <br>
+  <button *ngIf="userRole!=='user'" class="btn btn-info btn-md me-3" style="border-radius:25px;"
+    (click)="onClickChange()">{{ (isUserSeeGrid)?"Change To GridView":"Change To Normal-View" }}</button>
+  <button *ngIf="userRole!=='user'" class="btn btn-success btn-md" style="border-radius:25px;"
+    (click)="redirect()">+ADD</button>
+  <br>
+  <br>
+  <br>
+
+  <div *ngIf="userRole === 'user'">
+    <div *ngFor="let data of usersDataFromDatabase; let i = index" class="product-card float-start mx-2">
+      <div class="product-image-wrapper">
+        <img [src]="baseUrl+'/images/productImages/'+data.image" alt="Product Image" class="product-image"
+          (error)="onImageError($event)" />
+      </div>
+      <div class="product-details">
+        <div class="badges">
+          <span class="mall-badge">Mall</span>
+          <span class="flagship-badge">Flagship Store</span>
+        </div>
+        <h4 class="product-name" [innerHTML]="data.name"></h4>
+        <p class="product-price" [innerHTML]="'Rs.' + data.price"></p>
+        <div class="rating">
+          <span class="stars">★★★★☆</span>
+          <span class="reviews">({{ data.sales }})</span>
+        </div>
+        <div class="cart-button">
+          <button class="add-to-cart" (click)="addToCart(data.price,data.id)">
+            <i class="fa fa-cart-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="isUserSeeGrid && userRole === 'admin'">
+    <div class="product-card float-start mx-2"
+      style="background: linear-gradient(145deg, #4A148C, #6A1B9A, #8E24AA, #AB47BC); margin:7px; padding:0px;"
+      *ngFor="let data of usersDataFromDatabase; let i = index">
+      <div class="image-container position-relative">
+        <img id="image-preview_{{ data.id }}" [src]="baseUrl + '/images/productImages/' + data.image" alt="Image"
+          class="product-image" height="254px" width="415px" (error)="onImageError($event)" />
+        <ng-container *ngIf="userRole === 'admin'">
+          <input type="file" id="file-input_{{ data.id }}" class="image-hover" accept="image/*"
+            (change)="onFileSelectedUpdate($event, true, data.id)" />
+          <label for="file-input_{{ data.id }}" class="btn btn-primary upload-btn">Upload Image</label>
+        </ng-container>
+      </div>
+
+      <div class="card-body">
+        <h5 class="product-title">{{ data.name }}</h5>
+        <hr />
+
+        <div class="row">
+          <div class="col-md-3">
+            <b class="product-price">Price:</b>
+          </div>
+          <div class="col-md-5">
+            <p class="product-text">{{ data.price }}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-8">
+            <div class="hover-div">
+              <span class="custom-tooltip product-description">
+                <div [innerHTML]="data.description"></div>
+              </span>
+              <p class="card-text product-text title-div border border-success">
+                {{ data.description.length > 8 ? data.description.substring(0, 12) + '...' : data.description }}
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-info btn-md text-decoration-none hover-underline"
+              (click)="redirectTo('cartSystem/viewProduct/', data.id)">
+              View
+            </button>
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="row p-0 m-0">
+          <div class="col-md-5">
+            <button type="button" class="btn btn-info btn-md text-decoration-none hover-underline"
+              (click)="openModal(data.id, data.name, data.description, data.price, data.categoryId)"
+              style="border-radius: 25px;">
+              Update
+            </button>
+          </div>
+          <div class="col-auto d-flex align-items-center">
+            <span class="text-muted">|</span>
+          </div>
+          <div class="col-md-5">
+            <button type="button" class="btn btn-danger btn-md text-decoration-none hover-underline"
+              (click)="productDelete(data.id)" style="border-radius: 25px;">
+              Delete
+            </button>
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="row p-0 m-0">
+          <div *ngIf="productStatus()[i]" class="col-md-6 text-center btn btn-success btn-sm mx-2 my-1">
+            Active
+          </div>
+          <div *ngIf="!productStatus()[i]" class="col-md-6 text-center btn btn-warning btn-sm mx-2 my-1">
+            Inactive
+          </div>
+
+          <div class="col-md-4 text-center mx-2 my-1">
+            <mat-slide-toggle class="custom-toggle" [checked]="data.status === 1"
+              (change)="changeInput(data.id, data.status)">
+            </mat-slide-toggle>
+            <!-- <label class="switch">
+            <input type="checkbox" (click)="changeInput(data.id, data.status)" [checked]="data.status" />
+            <span class="slider round"></span>
+          </label> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <table class="table table-bordered table-hover table-dark" *ngIf="!isUserSeeGrid">
+    <tr>
+      <th *ngIf="userRole!=='user'">Image</th>
+      <th *ngIf="userRole!=='user'">ID</th>
+      <th>Name</th>
+      <th>Category Name</th>
+      <th>sub-Category Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th *ngIf="userRole==='user'">Add To Cart</th>
+      <th *ngIf="userRole!=='user'">Actions</th>
+      <th *ngIf="userRole!=='user'">Product Status</th>
+    </tr>
+
+    <tr *ngFor="let item of usersDataFromDatabase ">
+      <td *ngIf="userRole!=='user'">
+        <div class="image-container">
+          <img id="image-preview_{{item.id}}" [src]="baseUrl+'/images/productImages/'+item.image" alt="Image"
+            class="card-img-top" height="72px" width="180px" onerror="this.src='/assets/noImage.png'">
+          <input type="file" id="file-input_{{item.id}}" class="image-hover" accept="image/*"
+            (change)="onFileSelectedUpdate($event,true,item.id)">
+          <!-- <app-file-uploader (uploadParamsEmit)="onFileSelectedUpdate($event,true,item.id)"></app-file-uploader> -->
+          <label id="file-input" for="file-input_{{item.id}}" class="btn btn-primary upload-btn">Upload Image</label>
+        </div>
+      </td>
+      <td *ngIf="userRole!=='user'">{{ item.id }}</td>
+      <td> {{ item.name }}</td>
+      <td> {{ item.category }}</td>
+      <td> {{ item.subCatName }}</td>
+      <td> {{ item.description }}</td>
+      <td> {{ item.price }}</td>
+
+      <td *ngIf="userRole!=='user'"><button type="button" class="btn btn-info btn-md p-1"
+          (click)="openModal(item.id,item.name,item.description,item.price,item.categoryId)"
+          style="border-radius:25px;">UPDATE</button>
+        |
+        <span *ngIf="userRole!=='user'"><button type="button" class="btn btn-danger btn-md p-1"
+            (click)="productDelete(item.id)" style="border-radius:25px;">DELETE</button></span>
+      </td>
+      <td [hidden]="userRole!=='user'"><button type="button" class="btn btn-info btn-md" style="border-radius:25px;"
+          (click)="addToCart(item.price,item.id)">AddToCart</button></td>
+
+
+
+      <td *ngIf="userRole!=='user'">
+        <label class="switch">
+          <input type="checkbox" (click)="changeInput(item.id,item.status)" [checked]="item.status">
+          <span class="slider round"></span>
+        </label>
+      </td>
+    </tr>
+  </table>
+
+
+
+  <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">
+          </h4>
+          <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span
+              aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <form #myForm='ngForm' (ngSubmit)="UpdateProduct(productData.ProductId,myForm)">
+            ProductName: <input class="form-control" type="text" #name2="ngModel" name="name"
+              [(ngModel)]="userData.name2" required minlength="4">
+            <div *ngIf="name2?.invalid && (name2?.dirty || name2?.touched)" class="alert alert-danger" role="alert">
+              <div *ngIf="name2?.errors?.['required']">Name is required. </div>
+              <div *ngIf="name2?.errors?.['minlength']">Name must be greater than < 3. </div>
+              </div>
+              <br> <br>
+              ProductCategoryId:
+              <select name="catID2" #catID2="ngModel" [(ngModel)]="userData.catID2">
+                <option *ngFor="let cat of catDropdown" [value]="cat.id">
+                  {{ cat.name }}
+                </option>
+              </select>
+              <div *ngIf="catID2?.invalid && (catID2?.dirty || catID2?.touched)" class="alert alert-danger"
+                role="alert">
+                <div *ngIf="catID2?.errors?.['required']">cat id is required. </div>
+                <div *ngIf="catID2?.errors?.['minlength']">cat id must be greater than < 3. </div>
+                </div>
+                <br> <br>
+                ProductDescription<input class="form-control" type="text" #description2="ngModel" name="description"
+                  [(ngModel)]="userData.description2" required minlength="4">
+                <div *ngIf="description2?.invalid && (description2?.dirty || description2?.touched)"
+                  class="alert alert-danger" role="alert">
+                  <div *ngIf="description2?.errors?.['required']">description is required. </div>
+                  <div *ngIf="description2?.errors?.['minlength']">description must be greater than < 3. </div>
+                  </div>
+                  <br> <br>
+                  ProductPrice:<input class="form-control" type="number" #price2="ngModel" name="price2"
+                    [(ngModel)]="userData.price2" required minlength="4">
+                  <div *ngIf="price2?.invalid && (price2?.dirty || price2?.touched)" class="alert alert-danger"
+                    role="alert">
+                    <div *ngIf="price2?.errors?.['required']">price is required. </div>
+                    <div *ngIf="price2?.errors?.['minlength']">price must be greater than < 3. </div>
+                    </div>
+                    <br> <br>
+                    <button type="button" class="float-right btn btn-secondary ml-3" (click)="onCloseHandled()"
+                      style="border-radius:25px;">Close</button>
+                    <button type="submit" name="submit" class="float-right btn btn-primary" style="border-radius:25px;"
+                      [disabled]="myForm.invalid">submit</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

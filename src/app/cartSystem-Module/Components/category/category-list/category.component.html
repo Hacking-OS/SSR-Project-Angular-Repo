@@ -1,0 +1,103 @@
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+<!-- <p>category works!</p> -->
+<app-header></app-header>
+@if (userRole === 'admin') {
+<div id='message' *ngIf="message!=null"
+  style="color:white;background-color:red;border-radius:25px;text-align:center;padding:20px;">{{ this.message }}</div>
+
+<div class="container-fluid mt-2">
+  <button type="submit" class="btn btn-primary mt-3 mb-4" name="submit"
+    routerLink="/cartSystem/addCategory">Add</button>
+
+  <div class="card bg-dark mt-4">
+    <!-- bg-primary -->
+    <div class="card-header" style="background: linear-gradient(90deg, #4A148C, #6A1B9A, #8E24AA, #AB47BC);">
+      <h1 class="header ">Update Category & Sub-Categories</h1>
+    </div>
+    <div class="card-body mt-4">
+      <table class="table_on_the_left table-bordered table-hover table-dark">
+        <tr style="background: linear-gradient(90deg, #4A148C, #6A1B9A, #8E24AA, #AB47BC);">
+          <th>ID</th>
+          <th>CategoryName</th>
+          <th>update</th>
+        </tr>
+        <tbody>
+          <tr *ngFor="let person of categoryList ">
+            <!-- {{(person.status == 1) ? 'true' : 'false' }} -->
+            <td>{{ person.id }}</td>
+            <td> {{ person.name }}</td>
+            <td><button type="button" class="btn btn-info btn-sm"
+                (click)="openModal(person.id,person.name,undefined,false)">UPDATE</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+
+      <table class="table_on_the_right table-bordered table-hover table-dark float-right">
+        <tr style="background: linear-gradient(90deg, #AB47BC, #8E24AA, #6A1B9A, #4A148C);">
+          <th>ID</th>
+          <th>SubCategoryName</th>
+          <th>update</th>
+        </tr>
+        <tbody>
+          <tr *ngFor="let person of subCategoryList ">
+            <!-- {{(person.status == 1) ? 'true' : 'false' }} -->
+            <td>{{ person.id }}</td>
+            <td> {{ person.subCategoryName }}</td>
+            <td><button type="button" class="btn btn-info btn-sm"
+                (click)="openModal(person.id,person.subCategoryName,person.categoryID,true)">UPDATE</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+}
+
+
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display': display, 'background': 'rgba(0, 0, 0, 0.5)'}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+        </h4>
+        <button type="button" class="btn btn-danger" aria-label="Close" (click)="onCloseHandled()"><span
+            aria-hidden="true">&times;</span></button>
+      </div>
+      <form #updateForm='ngForm' (ngSubmit)="UpdateCategory(this.getCatId,updateForm)">
+      <div class="modal-body">
+          <input class="form-control" type="text" #catnamenew="ngModel" name="catnamenew"
+            [(ngModel)]="userData.catnamenew" [placeholder]="userData.CurrentCatName" required minlength="4">
+          <div *ngIf="catnamenew?.invalid && (catnamenew?.dirty || catnamenew?.touched)" class="alert alert-danger"
+            role="alert">
+            <div *ngIf="catnamenew?.errors?.['required']">Name is required. </div>
+            <div *ngIf="catnamenew?.errors?.['minlength']">Name must be greater than < 3. </div>
+            </div>
+            @if (isSubCat) {
+            <select class="form-control mt-3 mb-2" name="catID" #catID="ngModel" [(ngModel)]="userData.catId">
+              <option *ngFor="let cat of categoryList" [value]="cat.id">
+                {{ cat.name }}
+              </option>
+            </select>
+            <!-- <input class="form-control" type="text" #parentCatID="ngModel" name="catnamenew"
+              [(ngModel)]="userData.catnamenew" placeholder="{{ this.userData.CurrentCatName }}" required minlength="4"> -->
+            <div *ngIf="catID?.invalid && (catID?.dirty || catID?.touched)" class="alert alert-danger" role="alert">
+              <div *ngIf="catID?.errors?.['required']">Category is required. </div>
+              <!-- <div *ngIf="catID?.errors?.['minlength']">Name must be greater than < 3. </div> -->
+            </div>
+            <br> <br>
+            } @else {}
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary mx-2" name="submit">Submit</button>
+            <button type="button" class="btn btn-danger" (click)="onCloseHandled()">Close</button>
+          </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
+<!-- <button style="color:blue;cursor:pointer" (click)="UpdateCategory(person.id)">forget password?</button> -->
