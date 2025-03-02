@@ -18,50 +18,60 @@ export class LoggerService {
   }
 
 updateHeaders():void {
-  const getCsrfToken = this.getCookie('XSRF-TOKEN') ?? (typeof window !== 'undefined' && typeof localStorage !== 'undefined') ? sessionStorage.getItem('xsrfToken') : '';
-  const userAgent = (typeof window !== 'undefined' && typeof document !== 'undefined') ? window.navigator.userAgent : '';
-  const timestamp = new Date(Date.now()).toISOString(); // Get current timestamp
-  const headers = new HttpHeaders({
-    Authorization: 'Bearer ' + (typeof window !== 'undefined' && typeof localStorage !== 'undefined') ? localStorage.getItem('access_token') : '',
-    // 'Content-Type': 'application/json',
-    'X-XSRF-TOKEN': getCsrfToken ?? '',
-    'HMAC-Signature': this.generateHmacSignature('',userAgent,''),
-    'x-timestamp': timestamp,
-    'User-Agent': userAgent
-  });
-
-  this.logger.updateConfig({
-    customHttpHeaders: headers,
-    level: NgxLoggerLevel.DEBUG,
-    withCredentials:true,
-    serverLoggingUrl: environment.baseUrl + '/api/logger/logs',
-    serverLogLevel: NgxLoggerLevel.DEBUG,
-  });
+   if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+    const getCsrfToken = this.getCookie('XSRF-TOKEN') ?? (typeof window !== 'undefined' && typeof localStorage !== 'undefined') ? sessionStorage.getItem('xsrfToken') : '';
+    const userAgent = window.navigator.userAgent || '';
+    const timestamp = new Date(Date.now()).toISOString(); // Get current timestamp
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('access_token') || '',
+      // 'Content-Type': 'application/json',
+      'X-XSRF-TOKEN': getCsrfToken ?? '',
+      'HMAC-Signature': this.generateHmacSignature('',userAgent,''),
+      'x-timestamp': timestamp,
+      'User-Agent': userAgent
+    });
+  
+    this.logger.updateConfig({
+      customHttpHeaders: headers,
+      level: NgxLoggerLevel.DEBUG,
+      withCredentials:true,
+      serverLoggingUrl: environment.baseUrl + '/api/logger/logs',
+      serverLogLevel: NgxLoggerLevel.DEBUG,
+    });
+   }
 }
 
   log(message: string) {
     // this.overrideConsoleMethods();
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
     this.updateHeaders();
     this.logger.debug(message);
+    }
   }
 
   error(message: string) {
     // this.setTokenRefreshStatus(true);
     // this.overrideConsoleMethods();
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
     this.updateHeaders();
     this.logger.error(message);
+    }
   }
 
   info(message: string) {
     // this.setTokenRefreshStatus(true);
     // this.overrideConsoleMethods();
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
     this.updateHeaders();
     this.logger.info(message);
+    }
   }
 
   warn(message: string) {
     // this.overrideConsoleMethods();
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
     this.logger.warn(message);
+    }
   }
 
   getTokenRefreshStatus(): Observable<boolean> {

@@ -34,6 +34,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { SocketService } from '../Shared-Module/Shared-Services/Socket-IO-Services/socket.io.service';
 import { SharedService } from '../Shared-Module/Shared-Services/shared.Service';
 import { HttpLoginService } from './Http-Services/login.HttpService';
+import { provideClientHydration } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -70,8 +71,10 @@ import { HttpLoginService } from './Http-Services/login.HttpService';
       positionClass: 'toast-top-right',
       preventDuplicates: true,
     }),
+    
   ],
   providers: [
+    provideClientHydration(),
     SocketService,
     {
       provide: HttpLoginService,

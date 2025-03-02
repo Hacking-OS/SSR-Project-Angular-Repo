@@ -1,4 +1,4 @@
-import { ErrorHandler, NgModule } from '@angular/core';
+import { ErrorHandler, NgModule, provideZoneChangeDetection } from '@angular/core';
 import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -55,9 +55,9 @@ import { UserModule } from './User-Module/user.module';
       preventDuplicates: true, // Prevent duplicate toasts
   }),
 
-  // UserModule,
-  // CartModule,
-  // AdminModule,
+  UserModule,
+  CartModule,
+  AdminModule,
   // MediaModule,
   MainModule,
     AppRoutingModule
@@ -71,6 +71,8 @@ import { UserModule } from './User-Module/user.module';
     UserFoundGuard,
     DatePipe,
     provideAnimations(),
+    provideClientHydration(withEventReplay()),
+    provideZoneChangeDetection({eventCoalescing:true}),
     provideHttpClient(
       withFetch(),
       withInterceptorsFromDi(), // Automatically register interceptors from DI
@@ -81,7 +83,7 @@ import { UserModule } from './User-Module/user.module';
     ),
     httpInterceptorProviders,
     { provide: ErrorHandler, useClass: GlobalErrorHandlerService }, // Global error handler
-    provideClientHydration(withEventReplay())
+    // provideClientHydration(withEventReplay())
   ],
   bootstrap: [AppComponent]
 })

@@ -34,6 +34,7 @@ import { MatCardModule } from '@angular/material/card';
 import { BreakUpAmountFormComponent } from './Components/forms/break-up-form.component';
 import { TestComponent } from './Components/test/test.component';
 import { LoaderComponent } from './Components/loader/loader.component';
+import { provideClientHydration } from '@angular/platform-browser';
 @NgModule({ declarations: [HomeComponent, HeaderComponent, FooterComponent, ErrorComponent, PageComponent, SidebarComponent, DemoNgPrimeComponent, LoaderComponent, NotificationComponent, HmacAuthComponent, BreakUpAmountFormComponent, TestComponent],
     exports: [HomeComponent, HeaderComponent, FooterComponent, ErrorComponent, PageComponent, SidebarComponent, DemoNgPrimeComponent, NotificationComponent, HmacAuthComponent, BreakUpAmountFormComponent,LoaderComponent], imports: [MainRoutingModule,
         CommonModule,
@@ -48,6 +49,7 @@ import { LoaderComponent } from './Components/loader/loader.component';
         MenubarModule,
         MatCardModule,
         PaginatorModule], providers: [
+        provideClientHydration(),
         // HttpMainService,  // Provide HttpMainService
         // HttpMainEndpointService, // Provide HttpMainEndpointService
         {

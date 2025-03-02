@@ -39,6 +39,7 @@ import { AddUserDialogComponent } from './Components/users/controls/user-purchas
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { SharedService } from '../Shared-Module/Shared-Services/shared.Service';
+import { provideClientHydration } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { SharedService } from '../Shared-Module/Shared-Services/shared.Service';
     FeatureModule,
   ],
   providers: [
+        provideClientHydration(),
     // HttpAdminService,
     // HttpMainAdminEndPointService,
     {

@@ -20,6 +20,7 @@ import { EntertainmentComponent } from './Components/entertainment/entertainment
 import { AudioComponent } from './Components/audio/audio.component';
 import { VideoComponent } from './Components/video/video.component';
 import { SharedService } from '../Shared-Module/Shared-Services/shared.Service';
+import { provideClientHydration } from '@angular/platform-browser';
 // import { SharedService } from '../Shared-Module/Shared-Services/shared.Service';
 
 
@@ -44,6 +45,7 @@ import { SharedService } from '../Shared-Module/Shared-Services/shared.Service';
         })], providers: [
         //  HttpLoginService,
         //  HttpLoginEndPointService,
+        provideClientHydration(),
         {
             provide: HttpMediaService,
             useFactory: (injector: Injector,sharedService:SharedService) => {

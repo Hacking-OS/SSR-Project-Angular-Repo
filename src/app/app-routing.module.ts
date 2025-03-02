@@ -15,24 +15,24 @@ const routes: Routes = [
 //   path: 'content',
 //   loadChildren: () => import('./User-Entertainment-Module/user-Entertainment.module').then((m) => m.MediaModule),
 // },
-// {
-//   path: 'user',
-//   // outlet: 'user',
-//   loadChildren: () => import('./User-Module/user.module').then((m) => m.UserModule),
-// },
-// {
-//   path: 'cartSystem',
-//   loadChildren: () => import('./cartSystem-Module/cart.module').then((m) => m.CartModule),
-// },
-// {
-//   path: 'admin',
-//   // outlet: 'admin',
-//   loadChildren: () => import('./Admin-Module/admin.module').then((m) => m.AdminModule),
-// },
-// {
-//   path: '**',
-//   component: PageNotFoundComponent,
-// },
+{
+  path: 'user',
+  // outlet: 'user',
+  loadChildren: () => import('./User-Module/user.module').then((m) => m.UserModule),
+},
+{
+  path: 'cartSystem',
+  loadChildren: () => import('./cartSystem-Module/cart.module').then((m) => m.CartModule),
+},
+{
+  path: 'admin',
+  // outlet: 'admin',
+  loadChildren: () => import('./Admin-Module/admin.module').then((m) => m.AdminModule),
+},
+{
+  path: '**',
+  component: PageNotFoundComponent,
+},
 ];
 
 @NgModule({

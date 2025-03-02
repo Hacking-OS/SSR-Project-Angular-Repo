@@ -7,6 +7,7 @@ export class CspNonceService {
   async generateNonce(): Promise<string> {
     try {
       // Check if the Web Crypto API is available
+      if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
       if (window.crypto && window.crypto.subtle) {
         const randomBytes = new Uint8Array(16);
         await window.crypto.getRandomValues(randomBytes);
@@ -21,6 +22,7 @@ export class CspNonceService {
           .map(() => Math.floor(Math.random() * 256));
         const nonce = CryptoJS.enc.Base64.stringify(CryptoJS.lib.WordArray.create(randomBytes));
         return `'nonce-${nonce}'`;
+      }
       }
     } catch (error) {
       console.error('Error generating nonce:', error);
