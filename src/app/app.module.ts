@@ -70,9 +70,9 @@ import { UserModule } from './User-Module/user.module';
     UserFoundGuard,
     DatePipe,
     provideAnimations(),
-    // provideClientHydration(),
+    provideClientHydration(),
     // provideClientHydration(withEventReplay()),
-    // provideZoneChangeDetection({eventCoalescing:true}),
+    provideZoneChangeDetection({eventCoalescing:true}),
     provideHttpClient(
       withFetch(),
       withInterceptorsFromDi(), // Automatically register interceptors from DI
