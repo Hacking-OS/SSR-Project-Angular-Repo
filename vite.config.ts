@@ -6,7 +6,17 @@ export default defineConfig({
       '@swimlane/ngx-datatable',
       'video.js',
       'hls.js',
-      'ngx-echarts'
+      'ngx-echarts',
+      'ngx-toastr',
+      'bootstrap',
+      'ngx-bootstrap',
+      'primeng',
+      'ng2-charts',
+      'chart.js',
+      'primeicons',
+      'primeflex',
+      'ngx-toasta',
+      'ngx-logger'
     ]
   }
 });

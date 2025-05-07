@@ -18,7 +18,7 @@ export class GlobalErrorHandlerService extends ErrorHandler {
       const alertService = this.injector.get<AlertService>(AlertService);
       const sharedService = this.injector.get<SharedService>(SharedService);
       alertService.showErrorPopup(error, AlertType.Error,true);
-      this.logger.error('EndpointBase handleError:' + Utilities.getHttpResponseMessage(error));
+      // this.logger.error('EndpointBase handleError:' + Utilities.getHttpResponseMessage(error));
       if (!sharedService.getUserSessionInfo()?.access_token) {
         return;
       }

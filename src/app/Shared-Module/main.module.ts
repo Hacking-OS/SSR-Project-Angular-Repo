@@ -49,7 +49,6 @@ import { provideClientHydration } from '@angular/platform-browser';
         MenubarModule,
         MatCardModule,
         PaginatorModule], providers: [
-        provideClientHydration(),
         // HttpMainService,  // Provide HttpMainService
         // HttpMainEndpointService, // Provide HttpMainEndpointService
         {

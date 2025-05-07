@@ -149,7 +149,7 @@ if(error.status != 401 && error.status != 403 && HTTP_STATUS_CODES.includes(erro
 
   private handleRefreshTokenError(error: HttpErrorResponse): Observable<HttpEvent<HttpErrorResponse>> {
     // Invalid refresh token!
-  this.logger.error('EndpointBase handleError:' + JSON.stringify(Utilities.getHttpResponseMessage(error)));
+  // this.logger.error('EndpointBase handleError:' + JSON.stringify(Utilities.getHttpResponseMessage(error)));
   if(error.status === 0) {
     if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
     localStorage.clear();

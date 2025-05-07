@@ -84,7 +84,7 @@ import { provideClientHydration } from '@angular/platform-browser';
     FeatureModule,
   ],
   providers: [
-        provideClientHydration(),
+        // provideClientHydration(),
     // HttpAdminService,
     // HttpMainAdminEndPointService,
     {

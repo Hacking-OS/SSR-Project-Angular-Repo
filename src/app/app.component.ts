@@ -49,8 +49,11 @@ export class AppComponent {
   constructor(private router: Router, private renderer: Renderer2, private cspNonceService: CspNonceService, private busyService: BusyService, public loadingService: LoadingService, private fb: FormBuilder,private logger:LoggerService, private cdr: ChangeDetectorRef , private sharedService:SharedService) {
     this.userRole = this.sharedService.getUserInfo()?.role;
 
-    this.logger.info("Logger State: ");
-    this.logger.getTokenRefreshStatus().pipe(observeOn(asapScheduler)).subscribe((state) => {this. logger.info("Refresh-Token State:    "+  state);this.cdr.detectChanges();});
+    // this.logger.info("Logger State: ");
+    this.logger.getTokenRefreshStatus().pipe(observeOn(asapScheduler)).subscribe((state) => {
+      // this.logger.info("Refresh-Token State:    "+  state);
+      this.cdr.detectChanges();
+    });
     // busyService.busyState$.pipe(delay(0)).subscribe((bs) => (this.busy = bs.isBusy));
     // asapScheduler ensures this is async; remove this and look in console to see nasty error without this
     // ExpressionChangedAfterItHasBeenCheckedError

@@ -74,7 +74,6 @@ import { provideClientHydration } from '@angular/platform-browser';
     
   ],
   providers: [
-    provideClientHydration(),
     SocketService,
     {
       provide: HttpLoginService,

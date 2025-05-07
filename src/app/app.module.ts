@@ -59,8 +59,7 @@ import { UserModule } from './User-Module/user.module';
   CartModule,
   AdminModule,
   // MediaModule,
-  MainModule,
-    AppRoutingModule
+  MainModule
   ],
   providers: [
     PageLoaderService,
@@ -71,8 +70,9 @@ import { UserModule } from './User-Module/user.module';
     UserFoundGuard,
     DatePipe,
     provideAnimations(),
-    provideClientHydration(withEventReplay()),
-    provideZoneChangeDetection({eventCoalescing:true}),
+    // provideClientHydration(),
+    // provideClientHydration(withEventReplay()),
+    // provideZoneChangeDetection({eventCoalescing:true}),
     provideHttpClient(
       withFetch(),
       withInterceptorsFromDi(), // Automatically register interceptors from DI
